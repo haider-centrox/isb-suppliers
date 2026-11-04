@@ -33,7 +33,11 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="hero">
+        <section className="hero hero-bg">
+          <div className="hero-media" aria-hidden="true">
+            <img src="/images/hero-black-chair.jpg" alt="" fetchPriority="high" />
+          </div>
+          <div className="hero-shade" aria-hidden="true" />
           <div className="container hero-inner">
             <div className="hero-copy">
               <p className="eyebrow">Supplying trust. Delivering value.</p>
@@ -56,12 +60,9 @@ export default function Home() {
               </dl>
             </div>
             <div className="hero-art">
-              <div className="hero-photo hero-photo-a"><img src="/images/chair-gaming-red-relax.jpg" alt="Red and black gaming chair" /></div>
-              <div className="hero-photo hero-photo-b"><img src="/images/chair-black-mesh-executive.jpg" alt="Black mesh executive chair" /></div>
-              <div className="hero-ring" />
               <div className="hero-badge">
-                <strong>Gaming chairs</strong>
-                <span>from Rs. 10,000</span>
+                <strong>Executive mesh chairs</strong>
+                <span>from Rs. 23,000</span>
               </div>
             </div>
           </div>
