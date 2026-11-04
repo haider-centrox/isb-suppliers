@@ -77,7 +77,8 @@ function withTimeout(promise, label) {
 // through it on Netlify. Give Blobs a plain fetch (undici) instead.
 async function store() {
   const [{ getStore }, { fetch }] = await Promise.all([import("@netlify/blobs"), import("undici")]);
-  return getStore({ name: STORE, fetch });
+  // strong consistency: a save is visible on the very next page load.
+  return getStore({ name: STORE, fetch, consistency: "strong" });
 }
 
 async function readRaw() {
