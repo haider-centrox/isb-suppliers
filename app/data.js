@@ -9,6 +9,7 @@ export const CONTACT = {
   city: "Islamabad, Pakistan",
   hours: "Open 7 days, always available",
   facebook: "https://www.facebook.com/profile.php?id=61594155209042",
+  instagram: "https://www.instagram.com/islamabadsuppliers/",
 };
 
 export const categories = [
@@ -29,6 +30,8 @@ export const products = [
 
 export const offers = [
   { title: "Executive Office Table", price: "Rs. 28,000" },
+  { title: "Gaming Chair + Table (sale)", price: "Rs. 18,500" },
+  { title: "Table + Chair Set", price: "Rs. 15,000" },
   { title: "Student Offer: Table + Chair", price: "Rs. 10,000" },
   { title: "Gaming Chair", price: "Rs. 10,000" },
   { title: "Executive Chair", price: "Rs. 15,000" },
@@ -41,7 +44,7 @@ export const offers = [
 export const features = [
   { title: "Quality Products", text: "Every piece checked before it leaves our warehouse." },
   { title: "On Time Delivery", text: "Real orders, delivered when we promise." },
-  { title: "Trusted Partner", text: "4.6K+ followers and growing through real customer feedback." },
+  { title: "Trusted Partner", text: "8,000+ followers across Facebook and Instagram." },
   { title: "Nationwide Supply", text: "Based in Islamabad, delivering across Pakistan." },
 ];
 
