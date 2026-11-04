@@ -61,15 +61,30 @@ export const DEFAULTS = {
 function onNetlify() {
   return Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext || process.env.NETLIFY);
 }
+console.log("[content] module loaded; blobs context:", Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext), "NETLIFY env:", Boolean(process.env.NETLIFY));
+
+// Any storage call that takes longer than this is abandoned, so a storage
+// problem can never take the website down (pages fall back to DEFAULTS).
+const TIMEOUT_MS = 4000;
+function withTimeout(promise, label) {
+  let timer;
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(`${label} timed out after ${TIMEOUT_MS}ms`)), TIMEOUT_MS); }),
+  ]).finally(() => clearTimeout(timer));
+}
 
 async function store() {
   const { getStore } = await import("@netlify/blobs");
-  return getStore({ name: STORE, consistency: "strong" });
+  return getStore(STORE);
 }
 
 async function readRaw() {
   if (onNetlify()) {
-    return (await store()).get(KEY, { type: "json" });
+    const t0 = Date.now();
+    const v = await withTimeout((await store()).get(KEY, { type: "json" }), "blobs get");
+    console.log(`[content] blobs get ok in ${Date.now() - t0}ms (${v ? "saved" : "empty"})`);
+    return v;
   }
   try {
     return JSON.parse(await fs.readFile(path.join(LOCAL_DIR, KEY), "utf8"));
@@ -80,7 +95,9 @@ async function readRaw() {
 
 async function writeRaw(obj) {
   if (onNetlify()) {
-    await (await store()).setJSON(KEY, obj);
+    const t0 = Date.now();
+    await withTimeout((await store()).setJSON(KEY, obj), "blobs set");
+    console.log(`[content] blobs set ok in ${Date.now() - t0}ms`);
     return;
   }
   await fs.mkdir(LOCAL_DIR, { recursive: true });
@@ -113,7 +130,7 @@ export async function saveContent(content) {
 
 export async function resetContent() {
   if (onNetlify()) {
-    await (await store()).delete(KEY);
+    await withTimeout((await store()).delete(KEY), "blobs delete");
     return;
   }
   await fs.rm(path.join(LOCAL_DIR, KEY), { force: true });

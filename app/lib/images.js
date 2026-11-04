@@ -12,14 +12,20 @@ function onNetlify() {
   return Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext || process.env.NETLIFY);
 }
 
+const TIMEOUT_MS = 8000;
+const withTimeout = (p, label) => {
+  let t;
+  return Promise.race([p, new Promise((_, r) => { t = setTimeout(() => r(new Error(`${label} timed out`)), TIMEOUT_MS); })]).finally(() => clearTimeout(t));
+};
+
 async function store() {
   const { getStore } = await import("@netlify/blobs");
-  return getStore({ name: STORE });
+  return getStore(STORE);
 }
 
 export async function putImage(key, buf, contentType) {
   if (onNetlify()) {
-    await (await store()).set(key, buf, { metadata: { contentType } });
+    await withTimeout((await store()).set(key, buf, { metadata: { contentType } }), "image set");
     return;
   }
   await fs.mkdir(LOCAL_DIR, { recursive: true });
@@ -29,7 +35,7 @@ export async function putImage(key, buf, contentType) {
 export async function getImage(key) {
   const type = MIME[key.split(".").pop()];
   if (onNetlify()) {
-    const data = await (await store()).get(key, { type: "arrayBuffer" });
+    const data = await withTimeout((await store()).get(key, { type: "arrayBuffer" }), "image get");
     return data ? { data, type } : null;
   }
   try {
