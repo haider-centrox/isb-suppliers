@@ -1,4 +1,5 @@
 import Icon from "./icons";
+import Seal from "./Seal";
 import NewsletterForm from "./NewsletterForm";
 import WhatsAppButton from "./WhatsAppButton";
 import Motion from "./Motion";
@@ -213,10 +214,8 @@ export default function Home() {
             </div>
             <div className="badges">
               {registrations.map((r) => (
-                <div key={r.body + r.label} className={`badge${r.number ? "" : " badge-empty"}`}>
-                  <span className="badge-seal" aria-hidden="true">
-                    <Icon name="shield" size={22} />
-                  </span>
+                <div key={r.body + r.label} className={`badge${r.number ? "" : " badge-empty"}`} style={{ "--seal": r.seal.color }}>
+                  <Seal {...r.seal} />
                   <strong className="badge-body">{r.body}</strong>
                   <span className="badge-name">{r.name}</span>
                   {r.number ? (
@@ -225,7 +224,7 @@ export default function Home() {
                       <a href={r.verifyUrl} target="_blank" rel="noopener noreferrer" className="link small">Verify →</a>
                     </>
                   ) : (
-                    <span className="badge-num placeholder">{r.label}: add number</span>
+                    <span className="badge-num placeholder">{r.label} · pending</span>
                   )}
                 </div>
               ))}

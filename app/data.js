@@ -61,9 +61,14 @@ export const reels = [
 // Business registrations. Leave `number` empty until the client provides the real value:
 // empty slots render as "Add number" placeholders; filled ones show the number and a Verify link.
 export const registrations = [
-  { body: "FBR", name: "Federal Board of Revenue", label: "NTN", number: "", verifyUrl: "https://www.fbr.gov.pk/" },
-  { body: "FBR", name: "Sales Tax Registered", label: "STRN", number: "", verifyUrl: "https://www.fbr.gov.pk/" },
-  { body: "SECP", name: "Securities & Exchange Commission of Pakistan", label: "Reg. No.", number: "", verifyUrl: "https://www.secp.gov.pk/" },
-  { body: "ICCI", name: "Islamabad Chamber of Commerce & Industry", label: "Member No.", number: "", verifyUrl: "https://www.icci.com.pk/" },
-  { body: "e-PADS", name: "PPRA Registered Government Supplier", label: "Supplier ID", number: "", verifyUrl: "https://eprocure.gov.pk/" },
+  { body: "FBR", name: "Federal Board of Revenue", label: "NTN", number: "", verifyUrl: "https://www.fbr.gov.pk/",
+    seal: { abbr: "FBR", ring: "TAX REGISTERED • NTN •", color: "#0b5d3b", accent: "#2f9a64" } },
+  { body: "FBR", name: "Sales Tax Registered", label: "STRN", number: "", verifyUrl: "https://www.fbr.gov.pk/",
+    seal: { abbr: "STRN", ring: "SALES TAX • REGISTERED •", color: "#14532d", accent: "#3aa76d" } },
+  { body: "SECP", name: "Securities & Exchange Commission of Pakistan", label: "Reg. No.", number: "", verifyUrl: "https://www.secp.gov.pk/",
+    seal: { abbr: "SECP", ring: "INCORPORATED • COMPANY •", color: "#0b3a6b", accent: "#2f74c0" } },
+  { body: "ICCI", name: "Islamabad Chamber of Commerce & Industry", label: "Member No.", number: "", verifyUrl: "https://www.icci.com.pk/",
+    seal: { abbr: "ICCI", ring: "CHAMBER • MEMBER • ISLAMABAD •", color: "#7a1f2b", accent: "#c2414f" } },
+  { body: "e-PADS", name: "PPRA Registered Government Supplier", label: "Supplier ID", number: "", verifyUrl: "https://eprocure.gov.pk/",
+    seal: { abbr: "PPRA", ring: "GOVT SUPPLIER • e-PADS •", color: "#5b3a00", accent: "#c08a1e" } },
 ];
