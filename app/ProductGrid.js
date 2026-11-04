@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { KDesk } from "./illustrations";
+import AddToCart from "./AddToCart";
 
 const FILTER_KEYS = ["All", "Gaming", "Executive", "Ergonomic", "Tables"];
 
-export default function ProductGrid({ products, whatsapp, filters, filterAria, orderLabel, orderMsg }) {
+export default function ProductGrid({ products, whatsapp, filters, filterAria, orderLabel, orderMsg, addLabel, addedLabel }) {
   const [active, setActive] = useState("All");
   const shown = active === "All" ? products : products.filter((p) => p.type === active);
   const wa = (name) => `https://wa.me/${whatsapp}?text=${encodeURIComponent(`${orderMsg}${name}`)}`;
@@ -41,6 +42,7 @@ export default function ProductGrid({ products, whatsapp, filters, filterAria, o
                 <span className="price">{p.price}</span>
                 <a href={wa(p.name)} target="_blank" rel="noopener noreferrer" className="link">{orderLabel}</a>
               </div>
+              <AddToCart id={p.id} label={addLabel} addedLabel={addedLabel} />
             </div>
           </article>
         ))}

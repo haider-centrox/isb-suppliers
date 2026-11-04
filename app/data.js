@@ -16,15 +16,28 @@ export const SHOW_LANG_SWITCH = false;
 export const categoryIcons = ["chair", "it", "tv", "appliance", "office"];
 export const featureIcons = ["ship", "truck", "tag", "globe"];
 
-// Same order as `products` in i18n.js. `illus` items use a drawn illustration instead of a photo.
+// Same order as `products` in i18n.js. `illus` items use a drawn illustration on the site.
+// `id` is the product page slug (/p/<id>/). `priceValue` is in PKR; null means "price on request".
 export const productMeta = [
-  { type: "Gaming", img: "/images/chair-gaming-red-relax.jpg" },
-  { type: "Executive", img: "/images/chair-black-mesh-executive.jpg" },
-  { type: "Ergonomic", img: "/images/chair-ergonomic-premium.jpg" },
-  { type: "Executive", img: "/images/chair-grey-mesh-headrest.jpg" },
-  { type: "Gaming", img: "/images/chair-gaming-white-black.jpg" },
-  { type: "Tables", illus: true },
+  { id: "gaming-chair-red", type: "Gaming", priceValue: 10000, img: "/images/chair-gaming-red-relax.jpg" },
+  { id: "executive-mesh-chair", type: "Executive", priceValue: 23000, img: "/images/chair-black-mesh-executive.jpg" },
+  { id: "premium-ergonomic-chair", type: "Ergonomic", priceValue: 45000, img: "/images/chair-ergonomic-premium.jpg" },
+  { id: "executive-chair", type: "Executive", priceValue: 15000, img: "/images/chair-grey-mesh-headrest.jpg" },
+  { id: "gaming-chair-white", type: "Gaming", priceValue: 10000, img: "/images/chair-gaming-white-black.jpg" },
+  { id: "k-shaped-gaming-table", type: "Tables", priceValue: null, illus: true, img: "/images/k-shaped-gaming-table.png" },
 ];
+
+// SAMPLE advance-payment details for the POC. Deliberately non-working placeholders:
+// replace with the client's real account before launch and set `sample: false`.
+export const BANK = {
+  sample: true,
+  bank: "Bank name",
+  title: "ISB Suppliers",
+  account: "0000 0000 0000 0000",
+  iban: "PK00 XXXX 0000 0000 0000 0000",
+};
+
+export const SITE_URL = "https://isb-suppliers.netlify.app";
 
 // Public Facebook reels from the page, shown with Facebook's own embed player.
 export const reels = [

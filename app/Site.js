@@ -7,8 +7,11 @@ import BackToTop from "./BackToTop";
 import ProductGrid from "./ProductGrid";
 import QuoteForm from "./QuoteForm";
 import LangSync from "./LangSync";
+import { CartProvider } from "./CartContext";
+import CartButton from "./CartButton";
+import CartDrawer from "./CartDrawer";
 import { dict } from "./i18n";
-import { CONTACT, SHOW_LANG_SWITCH, categoryIcons, featureIcons, productMeta, reels, registrations } from "./data";
+import { CONTACT, SHOW_LANG_SWITCH, BANK, SITE_URL, categoryIcons, featureIcons, productMeta, reels, registrations } from "./data";
 
 function Logo({ home, brand }) {
   return (
@@ -38,6 +41,7 @@ export default function Site({ lang = "en" }) {
   const navLinks = t.nav.filter(([href]) => href !== "#verified");
 
   return (
+    <CartProvider products={products}>
     <div lang={t.lang} dir={t.dir} className={`site site-${t.lang}`}>
       <LangSync lang={t.lang} dir={t.dir} />
       <header className="nav">
@@ -48,6 +52,7 @@ export default function Site({ lang = "en" }) {
           </nav>
           <div className="nav-actions">
             {SHOW_LANG_SWITCH && <LangSwitch t={t} />}
+            <CartButton label={t.cart.open} />
             <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm nav-call" aria-label={`${t.call} ${CONTACT.phone}`}>
               <Icon name="phone" size={17} />
               <span className="nav-call-label">{t.callNow}</span>
@@ -191,6 +196,8 @@ export default function Site({ lang = "en" }) {
               filterAria={t.filterAria}
               orderLabel={t.order}
               orderMsg={t.orderMsg}
+              addLabel={t.cart.add}
+              addedLabel={t.cart.added}
             />
           </div>
         </section>
@@ -352,7 +359,9 @@ export default function Site({ lang = "en" }) {
 
       <WhatsAppButton number={CONTACT.whatsapp} message={t.waFloat.msg} label={t.waFloat.label} aria={t.waFloat.aria} />
       <BackToTop label={t.toTop} />
+      <CartDrawer t={t.cart} lang={t.lang} whatsapp={CONTACT.whatsapp} bank={BANK} siteUrl={SITE_URL} cities={t.quote.cities} />
       <Motion />
     </div>
+    </CartProvider>
   );
 }
