@@ -3,8 +3,8 @@
 export const CONTACT = {
   phone: "0330-6723330",
   phoneHref: "tel:+923306723330",
-  whatsapp: "923028599511",
-  whatsappDisplay: "+92 302 8599511",
+  whatsapp: "923306723330",
+  whatsappDisplay: "+92 330 6723330",
   email: "islamabadsuppliers@gmail.com",
   city: "Islamabad, Pakistan",
   hours: "Open 7 days, always available",
