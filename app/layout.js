@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "ISB Suppliers — Gaming tables, ergonomic chairs & office furniture",
+  title: "ISB Suppliers — Furniture, IT Equipment, Electronics & Office Solutions in Islamabad",
   description:
-    "K-shaped gaming tables, black ergonomic chairs and office furniture in Islamabad, with free delivery and assembly.",
+    "Your trusted procurement and supply partner in Islamabad. Office chairs, executive tables, IT equipment, electronics and appliances, delivered across Pakistan.",
 };
 
 export default function RootLayout({ children }) {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         />
         <link
           rel="icon"
-          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23141518'/><text x='16' y='21' font-family='Arial' font-weight='700' font-size='12' text-anchor='middle' fill='%23e5484d'>ISB</text></svg>"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231b2337'/><text x='16' y='21' font-family='Arial' font-weight='700' font-size='12' text-anchor='middle' fill='%2378a6ee'>ISB</text></svg>"
         />
       </head>
       <body>{children}</body>

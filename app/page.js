@@ -1,44 +1,19 @@
-import { KDesk, ErgoChair, ExecDesk, Workstation, Conference, Storage } from "./illustrations";
+import Icon from "./icons";
 import NewsletterForm from "./NewsletterForm";
 import WhatsAppButton from "./WhatsAppButton";
-
-const categories = [
-  { name: "Gaming Tables", count: "K-shaped & RGB", Art: KDesk, bg: "#ebebee" },
-  { name: "Ergonomic Chairs", count: "Black mesh & leather", Art: ErgoChair, bg: "#e7e8ec" },
-  { name: "Office Desks", count: "Executive & manager", Art: ExecDesk, bg: "#efebe6" },
-  { name: "Workstations", count: "2 to 12 seats", Art: Workstation, bg: "#e9ebe9" },
-];
-
-const products = [
-  { name: "K-Shape Pro Gaming Table 140cm", price: "Rs. 38,500", tag: "Bestseller", Art: KDesk, props: {} },
-  { name: "ErgoMax Black Mesh Chair", price: "Rs. 42,000", tag: "Bestseller", Art: ErgoChair, props: {} },
-  { name: "K-Shape Carbon Gaming Table 160cm", price: "Rs. 46,000", tag: "New", Art: KDesk, props: { accent: "#3b82f6" } },
-  { name: "ErgoMax Pro Chair with Headrest", price: "Rs. 55,000", Art: ErgoChair, props: { accent: "#3b82f6" } },
-  { name: "Executive Office Desk", price: "Rs. 72,000", Art: ExecDesk, props: {} },
-  { name: "4-Seat Office Workstation", price: "Rs. 118,000", tag: "Bulk deal", Art: Workstation, props: {} },
-];
-
-const reasons = [
-  { title: "Built for long hours", text: "Adjustable lumbar support, 4D armrests and recline lock to keep your back happy all day." },
-  { title: "Sturdy K-frame steel", text: "Our gaming tables use powder-coated steel K-legs that don't wobble, even with three monitors." },
-  { title: "Office & bulk orders", text: "Fitting out a whole office? Get special pricing on 5+ chairs or workstations." },
-  { title: "Free delivery & assembly", text: "Free delivery and setup across Islamabad and Rawalpindi, with a 1-year warranty." },
-];
-
-const testimonials = [
-  { quote: "The K-shaped table is rock solid. Two monitors, a PC and a mic arm on it and zero shake.", name: "Hamza A.", place: "Gamer, G-11" },
-  { quote: "We ordered 20 black ergonomic chairs for our software house. Delivered and assembled in a day.", name: "Usman R.", place: "Office manager, Blue Area" },
-  { quote: "My back pain at work is gone since switching to the ErgoMax chair. Worth every rupee.", name: "Sana M.", place: "Bahria Town" },
-];
+import { KDesk } from "./illustrations";
+import { CONTACT, categories, products, offers, features, reels } from "./data";
 
 function Logo() {
   return (
     <a href="#" className="logo" aria-label="ISB Suppliers home">
-      <span className="logo-mark">ISB</span>
-      <span className="logo-text">Suppliers</span>
+      <img src="/images/logo-mark.jpg" alt="" width="56" height="34" />
+      <span className="logo-text">ISB Suppliers</span>
     </a>
   );
 }
+
+const featureIcons = ["shield", "truck", "handshake", "globe"];
 
 export default function Home() {
   return (
@@ -47,12 +22,12 @@ export default function Home() {
         <div className="container nav-inner">
           <Logo />
           <nav className="nav-links" aria-label="Main">
-            <a href="#categories">Shop</a>
-            <a href="#featured">Products</a>
-            <a href="#why">Why us</a>
+            <a href="#products">Products</a>
+            <a href="#offers">Prices</a>
+            <a href="#videos">Videos</a>
             <a href="#contact">Contact</a>
           </nav>
-          <a href="#featured" className="btn btn-dark btn-sm">Shop now</a>
+          <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm">Call now</a>
         </div>
       </header>
 
@@ -60,120 +35,150 @@ export default function Home() {
         <section className="hero">
           <div className="container hero-inner">
             <div className="hero-copy">
-              <p className="eyebrow">Office & gaming furniture · Islamabad</p>
-              <h1>Sit better. Play longer. Work smarter.</h1>
+              <p className="eyebrow">Supplying trust. Delivering value.</p>
+              <h1>
+                Your <em>trusted</em> partner in quality products &amp; <em>reliable</em> supply.
+              </h1>
               <p className="lead">
-                K-shaped gaming tables, black ergonomic chairs and complete office setups, delivered
-                and assembled for free.
+                Islamabad&apos;s procurement and supply partner for furniture, IT equipment,
+                electronics, appliances and complete office solutions, at competitive prices and
+                delivered across Pakistan.
               </p>
               <div className="hero-actions">
-                <a href="#featured" className="btn btn-dark">Browse products</a>
-                <a href="#contact" className="btn btn-ghost">Get a bulk quote</a>
+                <a href="#products" className="btn btn-dark">See products</a>
+                <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Order on WhatsApp</a>
               </div>
               <dl className="stats">
-                <div><dt>5,000+</dt><dd>Chairs delivered</dd></div>
-                <div><dt>300+</dt><dd>Offices furnished</dd></div>
-                <div><dt>4.9★</dt><dd>Customer rating</dd></div>
+                <div><dt>4.6K+</dt><dd>Facebook followers</dd></div>
+                <div><dt>5</dt><dd>Product categories</dd></div>
+                <div><dt>🇵🇰</dt><dd>Nationwide delivery</dd></div>
               </dl>
             </div>
             <div className="hero-art">
-              <div className="hero-glow" />
-              <div className="hero-card">
-                <div className="hero-scene">
-                  <div className="hero-desk"><KDesk /></div>
-                  <div className="hero-chair"><ErgoChair /></div>
-                </div>
-              </div>
+              <div className="hero-photo hero-photo-a"><img src="/images/chair-gaming-red-relax.jpg" alt="Red and black gaming chair" /></div>
+              <div className="hero-photo hero-photo-b"><img src="/images/chair-black-mesh-executive.jpg" alt="Black mesh executive chair" /></div>
               <div className="hero-badge">
-                <strong>Combo deal</strong>
-                <span>Gaming table + chair from Rs. 76,000</span>
+                <strong>Gaming chairs</strong>
+                <span>from Rs. 10,000</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="strip">
+          <div className="container strip-inner">
+            {features.map((f, i) => (
+              <div key={f.title} className="strip-item">
+                <Icon name={featureIcons[i]} />
+                <div>
+                  <strong>{f.title}</strong>
+                  <span>{f.text}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
         <section id="categories" className="section">
           <div className="container">
             <div className="section-head">
-              <p className="eyebrow">Shop by category</p>
-              <h2>Everything for your desk setup</h2>
+              <p className="eyebrow">What we supply</p>
+              <h2>Everything your office needs, from one supplier</h2>
             </div>
-            <div className="grid-4">
-              {categories.map(({ name, count, Art, bg }) => (
-                <a key={name} href="#featured" className="category" style={{ background: bg }}>
-                  <div className="category-art"><Art /></div>
-                  <h3>{name}</h3>
-                  <span>{count} →</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="featured" className="section section-alt">
-          <div className="container">
-            <div className="section-head">
-              <p className="eyebrow">Top sellers</p>
-              <h2>Gaming tables & ergonomic chairs</h2>
-            </div>
-            <div className="grid-3">
-              {products.map(({ name, price, tag, Art, props }) => (
-                <article key={name} className="product">
-                  <div className="product-art">
-                    {tag && <span className="tag">{tag}</span>}
-                    <Art {...props} />
-                  </div>
-                  <div className="product-body">
-                    <h3>{name}</h3>
-                    <div className="product-row">
-                      <span className="price">{price}</span>
-                      <a href="#contact" className="link">Order →</a>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="why" className="section">
-          <div className="container why">
-            <div className="section-head left">
-              <p className="eyebrow">Why ISB Suppliers</p>
-              <h2>Comfort you can feel on day one.</h2>
-              <p className="muted">
-                From a single gaming setup to a full office floor, we supply furniture that is built
-                to handle 8+ hours of daily use, at prices that make sense.
-              </p>
-            </div>
-            <div className="reasons">
-              {reasons.map((r, i) => (
-                <div key={r.title} className="reason">
-                  <span className="reason-num">0{i + 1}</span>
-                  <h3>{r.title}</h3>
-                  <p>{r.text}</p>
+            <div className="grid-5">
+              {categories.map((c) => (
+                <div key={c.name} className="category">
+                  <span className="category-icon"><Icon name={c.icon} size={28} /></span>
+                  <h3>{c.name}</h3>
+                  <p>{c.text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="section section-dark">
+        <section id="products" className="section section-alt">
           <div className="container">
             <div className="section-head">
-              <p className="eyebrow accent">Reviews</p>
-              <h2>What our customers say</h2>
+              <p className="eyebrow">From our showroom</p>
+              <h2>Office, executive &amp; gaming chairs</h2>
             </div>
             <div className="grid-3">
-              {testimonials.map((t) => (
-                <figure key={t.name} className="quote">
-                  <blockquote>“{t.quote}”</blockquote>
-                  <figcaption>
-                    <strong>{t.name}</strong>
-                    <span>{t.place}</span>
-                  </figcaption>
-                </figure>
+              {products.map((p) => (
+                <article key={p.name + p.img} className="product">
+                  <div className="product-art">
+                    {p.tag && <span className="tag">{p.tag}</span>}
+                    <img src={p.img} alt={p.name} />
+                  </div>
+                  <div className="product-body">
+                    <h3>{p.name}</h3>
+                    <p className="muted small">{p.note}</p>
+                    <div className="product-row">
+                      <span className="price">{p.price}</span>
+                      <a href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(`Hi ISB Suppliers, I want to order: ${p.name}`)}`} target="_blank" rel="noopener noreferrer" className="link">Order →</a>
+                    </div>
+                  </div>
+                </article>
               ))}
+              <article className="product">
+                <div className="product-art illus"><span className="tag">Custom</span><KDesk /></div>
+                <div className="product-body">
+                  <h3>K-Shaped Gaming Table</h3>
+                  <p className="muted small">Sturdy steel K-frame, black top, room for multiple monitors</p>
+                  <div className="product-row">
+                    <span className="price">Ask for price</span>
+                    <a href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("Hi ISB Suppliers, I want a price for the K-shaped gaming table")}`} target="_blank" rel="noopener noreferrer" className="link">Order →</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="offers" className="section">
+          <div className="container offers">
+            <div className="section-head left">
+              <p className="eyebrow">Price list</p>
+              <h2>Current offers</h2>
+              <p className="muted">
+                Executive tables, customized conference tables, student desks and complete office
+                setups. Prices change with stock, so message us for today&apos;s rate.
+              </p>
+              <a href={CONTACT.phoneHref} className="btn btn-dark" style={{ marginTop: 24 }}>Call {CONTACT.phone}</a>
+            </div>
+            <ul className="offer-list">
+              {offers.map((o) => (
+                <li key={o.title}>
+                  <span>{o.title}</span>
+                  <strong>{o.price}</strong>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section id="videos" className="section section-dark">
+          <div className="container">
+            <div className="section-head">
+              <p className="eyebrow accent">Watch</p>
+              <h2>Real orders, real deliveries</h2>
+              <p className="muted-light">Product reels, deliveries and customer feedback from our Facebook page.</p>
+            </div>
+            <div className="reels">
+              {reels.map((id) => (
+                <div key={id} className="reel">
+                  <iframe
+                    src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(`https://www.facebook.com/reel/${id}/`)}&show_text=false&width=267`}
+                    title="ISB Suppliers video"
+                    loading="lazy"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="center">
+              <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-gold">More videos on Facebook</a>
             </div>
           </div>
         </section>
@@ -181,19 +186,20 @@ export default function Home() {
         <section id="contact" className="section">
           <div className="container cta">
             <div>
-              <h2>Setting up an office or a battle station?</h2>
-              <p className="muted">
-                Call or WhatsApp us for prices, bulk quotes and custom sizes.
-              </p>
+              <img src="/images/logo.jpg" alt="ISB Suppliers logo" className="cta-logo" width="230" height="155" />
+              <h2>Order now</h2>
+              <p className="muted">Call, WhatsApp or email us for prices, bulk orders and custom office setups.</p>
               <ul className="contact-list">
-                <li><span>Phone / WhatsApp</span> <a className="link" href="https://wa.me/923028599511" target="_blank" rel="noopener noreferrer">+92 302 8599511</a></li>
-                <li><span>Showroom</span> Islamabad, Pakistan</li>
-                <li><span>Hours</span> Mon–Sat, 10am – 8pm</li>
+                <li><Icon name="phone" size={20} /><a href={CONTACT.phoneHref}>{CONTACT.phone}</a></li>
+                <li><Icon name="phone" size={20} /><a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {CONTACT.whatsappDisplay}</a></li>
+                <li><Icon name="mail" size={20} /><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+                <li><Icon name="pin" size={20} /><span>{CONTACT.city} · delivering across Pakistan</span></li>
+                <li><Icon name="clock" size={20} /><span>{CONTACT.hours}</span></li>
               </ul>
             </div>
             <div className="cta-box">
-              <h3>Get deals first</h3>
-              <p>New arrivals and combo offers, once a month.</p>
+              <h3>Get our latest deals</h3>
+              <p>New stock and price drops, straight to your inbox.</p>
               <NewsletterForm />
             </div>
           </div>
@@ -203,6 +209,7 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-inner">
           <Logo />
+          <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="link">Follow us on Facebook</a>
           <p>© {new Date().getFullYear()} ISB Suppliers. All rights reserved.</p>
         </div>
       </footer>

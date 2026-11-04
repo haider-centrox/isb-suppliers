@@ -1,5 +1,5 @@
 const NUMBER = "923028599511";
-const MESSAGE = "Hi ISB Suppliers, I'm interested in your office / gaming furniture.";
+const MESSAGE = "Hi ISB Suppliers, I'd like to place an order.";
 
 export default function WhatsAppButton() {
   return (
