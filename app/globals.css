@@ -845,3 +845,68 @@ p { margin: 0; }
 @media (max-width: 700px) { .pp-card { grid-template-columns: 1fr; } .pp-img { aspect-ratio: 1; } .pp-body { padding: 22px; } }
 .cart-total strong small, .checkout-summary strong small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); }
 .checkout-summary strong { text-align: end; }
+
+/* Sections stop just below the sticky header when jumped to */
+main section[id] { scroll-margin-top: 72px; }
+@media (max-width: 640px) { main section[id] { scroll-margin-top: 64px; } }
+
+/* =========================================================
+   Hero carousel
+   ========================================================= */
+.hero-slide {
+  position: absolute; inset: 0; opacity: 0; transform: translateY(26px) scale(.93);
+  transition: opacity .8s ease, transform 1.1s cubic-bezier(.2,.7,.2,1);
+}
+.hero-slide.on { opacity: 1; transform: none; }
+.hero-slide .hero-chair { position: absolute; inset: 0; }
+.hero-slide[data-accent="red"] .hero-chair {
+  filter: drop-shadow(0 0 1px rgba(255,215,215,.45)) drop-shadow(0 0 30px rgba(240,110,120,.38)) contrast(1.04) brightness(1.06);
+}
+.hero-spot { transition: opacity .9s ease; }
+.spot-red {
+  opacity: 0;
+  background: radial-gradient(circle, rgba(245,160,160,.5) 0%, rgba(220,80,95,.26) 32%, rgba(201,37,60,.1) 52%, transparent 68%);
+}
+.hero-stage[data-accent="red"] .hero-spot:not(.spot-red) { opacity: 0; }
+.hero-stage[data-accent="red"] .spot-red { opacity: 1; }
+
+/* one price tag per slide; only the active one shows (popIn replays on change) */
+.hero-bg .hero-badge[data-i] { display: none; }
+.hero-bg[data-slide="0"] .hero-badge[data-i="0"], .hero-bg[data-slide="1"] .hero-badge[data-i="1"],
+.hero-bg[data-slide="2"] .hero-badge[data-i="2"], .hero-bg[data-slide="3"] .hero-badge[data-i="3"],
+.hero-bg[data-slide="4"] .hero-badge[data-i="4"], .hero-bg[data-slide="5"] .hero-badge[data-i="5"] { display: flex; }
+
+/* dots */
+.hero-dots {
+  position: absolute; z-index: 3; bottom: 24px;
+  right: max(2%, calc((100% - 1180px) / 2)); width: min(46%, 560px);
+  display: flex; justify-content: center; align-items: center; gap: 4px;
+}
+[dir="rtl"] .hero-dots { right: auto; left: max(2%, calc((100% - 1180px) / 2)); }
+.hero-dot { border: 0; background: none; padding: 8px 3px; cursor: pointer; }
+.hero-dot span { display: block; position: relative; overflow: hidden; width: 10px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.32); transition: width .45s cubic-bezier(.2,.7,.2,1), background .3s; }
+.hero-dot:hover span { background: rgba(255,255,255,.55); }
+.hero-dot.on span { width: 40px; background: rgba(255,255,255,.22); }
+.hero-dot i { position: absolute; inset: 0; border-radius: inherit; background: #fff; transform-origin: left; transform: scaleX(0); }
+[dir="rtl"] .hero-dot i { transform-origin: right; }
+.hero-dot i.run { animation: dotFill linear forwards; }
+.hero-dot i.full { transform: none; }
+@keyframes dotFill { to { transform: scaleX(1); } }
+.hero-pause {
+  margin-inline-start: 6px; width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.06); color: #fff; display: grid; place-items: center;
+}
+.hero-pause:hover { background: rgba(255,255,255,.16); }
+.hero-dot:focus-visible span, .hero-pause:focus-visible { outline: 2px solid #7fa8ee; outline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .hero.hero-bg::after { height: calc(min(52vw, 280px) * 1.74 + 52px); }
+  .hero-dots { right: 0; left: 0; width: auto; bottom: auto; top: calc(min(52vw, 280px) * 1.74 + 20px); }
+  [dir="rtl"] .hero-dots { left: 0; right: 0; }
+  .hero-bg[data-slide="0"] .hero-badge[data-i="0"], .hero-bg[data-slide="1"] .hero-badge[data-i="1"],
+  .hero-bg[data-slide="2"] .hero-badge[data-i="2"], .hero-bg[data-slide="3"] .hero-badge[data-i="3"],
+  .hero-bg[data-slide="4"] .hero-badge[data-i="4"], .hero-bg[data-slide="5"] .hero-badge[data-i="5"] { display: inline-flex; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-dot i.run { transform: none; }
+}

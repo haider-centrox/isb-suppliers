@@ -37,6 +37,23 @@ export const BANK = {
   iban: "PK00 XXXX 0000 0000 0000 0000",
 };
 
+// Hero carousel slides (cut-out product photos on the spotlight stage).
+// Slide 1's price tag comes from the admin (Homepage tab); others are set here.
+export const heroSlides = [
+  {
+    img: "/images/hero-chair-cutout.webp", w: 652, h: 1134, accent: "blue",
+    alt: { en: "Black mesh executive chair", ur: "سیاہ میش ایگزیکٹو چیئر" },
+  },
+  {
+    img: "/images/hero-gaming-chair.webp", w: 563, h: 1028, accent: "red",
+    alt: { en: "Red and black gaming chair", ur: "سرخ اور سیاہ گیمنگ چیئر" },
+    badge: {
+      en: ["Gaming chairs", "Racing style · ask for today's price"],
+      ur: ["گیمنگ چیئرز", "ریسنگ اسٹائل · آج کی قیمت معلوم کریں"],
+    },
+  },
+];
+
 export const SITE_URL = "https://isb-suppliers.netlify.app";
 
 // Public Facebook reels from the page, shown with Facebook's own embed player.

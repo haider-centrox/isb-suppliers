@@ -18,6 +18,22 @@ export default function MobileMenu({ links, labels, lang, dir, home, brand, phon
 
   const tab = open ? 0 : -1;
 
+  // Close first and unlock scrolling, then scroll. Letting the browser follow
+  // "#section" while the page is still scroll-locked fails on phones (iOS).
+  const goTo = (e, href) => {
+    setOpen(false);
+    if (!href.startsWith("#")) return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    e.preventDefault();
+    document.documentElement.style.overflow = "";
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      history.replaceState(null, "", href);
+    });
+  };
+
   // Rendered into <body> so the header's blur effect can't trap or clip it.
   const panel = (
     <div
@@ -41,7 +57,7 @@ export default function MobileMenu({ links, labels, lang, dir, home, brand, phon
       </div>
       <nav aria-label={labels.title}>
         {links.map(([href, label], i) => (
-          <a key={href} href={href} style={{ "--i": i }} onClick={() => setOpen(false)} tabIndex={tab}>
+          <a key={href} href={href} style={{ "--i": i }} onClick={(e) => goTo(e, href)} tabIndex={tab}>
             <span>{label}</span>
             <svg className="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </a>

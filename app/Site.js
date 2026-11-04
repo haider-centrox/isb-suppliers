@@ -10,7 +10,8 @@ import LangSync from "./LangSync";
 import { CartProvider } from "./CartContext";
 import CartButton from "./CartButton";
 import CartDrawer from "./CartDrawer";
-import { SHOW_LANG_SWITCH, SITE_URL, categoryIcons, featureIcons, registrations } from "./data";
+import { SHOW_LANG_SWITCH, SITE_URL, categoryIcons, featureIcons, registrations, heroSlides } from "./data";
+import HeroSlider from "./HeroSlider";
 import { getContent } from "./lib/content";
 import { buildView } from "./lib/view";
 
@@ -74,14 +75,13 @@ export default async function Site({ lang = "en" }) {
       </header>
 
       <main>
-        <section className="hero hero-bg">
-          <div className="hero-media" aria-hidden="true">
-            <div className="hero-stage">
-              <div className="hero-spot" />
-              <div className="hero-floor" />
-              <img className="hero-chair" src="/images/hero-chair-cutout.webp" alt="" fetchPriority="high" width="652" height="1134" />
-            </div>
-          </div>
+        <section className="hero hero-bg" data-slide="0">
+          <HeroSlider
+            slides={heroSlides.map((s) => ({ img: s.img, w: s.w, h: s.h, accent: s.accent, alt: s.alt[lang] }))}
+            labels={lang === "ur"
+              ? { group: "پروڈکٹ سلائیڈز", slide: "سلائیڈ", pause: "سلائیڈ شو روکیں", play: "سلائیڈ شو چلائیں" }
+              : { group: "Featured products", slide: "Slide", pause: "Pause slideshow", play: "Play slideshow" }}
+          />
           <div className="hero-shade" aria-hidden="true" />
           <div className="container hero-inner">
             <div className="hero-copy">
@@ -99,10 +99,12 @@ export default async function Site({ lang = "en" }) {
               </dl>
             </div>
             <div className="hero-art">
-              <div className="hero-badge">
-                <strong>{t.hero.badgeTitle}</strong>
-                <span>{t.hero.badgeText}</span>
-              </div>
+              {heroSlides.map((s, k) => (
+                <div key={s.img} className="hero-badge" data-i={k}>
+                  <strong>{k === 0 || !s.badge ? t.hero.badgeTitle : s.badge[lang][0]}</strong>
+                  <span>{k === 0 || !s.badge ? t.hero.badgeText : s.badge[lang][1]}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
