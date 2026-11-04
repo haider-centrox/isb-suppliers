@@ -402,3 +402,26 @@ p { margin: 0; }
 }
 
 @keyframes stageInM { from { opacity: 0; transform: translateX(-50%) scale(.9); } to { opacity: 1; transform: translateX(-50%); } }
+
+/* Registrations */
+.badges { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.badge {
+  position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 20px 22px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+}
+.badge:hover { transform: translateY(-5px); box-shadow: 0 24px 44px -28px rgba(22,32,58,.45); }
+.badge-seal {
+  width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 8px;
+  color: #fff; background: radial-gradient(circle at 35% 30%, #4a86e8, var(--navy));
+  box-shadow: 0 0 0 5px #e8effb, 0 0 0 6px #c9d8f3;
+}
+.badge-body { font-family: var(--serif); font-size: 22px; letter-spacing: .02em; }
+.badge-name { font-size: 13px; color: var(--muted); line-height: 1.4; min-height: 36px; }
+.badge-num { font-size: 13px; font-weight: 600; margin-top: 6px; }
+.badge-num.placeholder {
+  color: #8a91a1; font-weight: 500; border: 1px dashed #c3c9d4; border-radius: 999px; padding: 3px 12px; background: #fafbfc;
+}
+.badge-empty .badge-seal { background: radial-gradient(circle at 35% 30%, #8ea3c7, #4b5873); }
+@media (max-width: 1024px) { .badges { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .badges { grid-template-columns: repeat(2, 1fr); gap: 12px; } .badge { padding: 20px 14px; } .badge-body { font-size: 19px; } }

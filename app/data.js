@@ -57,3 +57,13 @@ export const reels = [
   "1595050959056770",
   "1800155827934011",
 ];
+
+// Business registrations. Leave `number` empty until the client provides the real value:
+// empty slots render as "Add number" placeholders; filled ones show the number and a Verify link.
+export const registrations = [
+  { body: "FBR", name: "Federal Board of Revenue", label: "NTN", number: "", verifyUrl: "https://www.fbr.gov.pk/" },
+  { body: "FBR", name: "Sales Tax Registered", label: "STRN", number: "", verifyUrl: "https://www.fbr.gov.pk/" },
+  { body: "SECP", name: "Securities & Exchange Commission of Pakistan", label: "Reg. No.", number: "", verifyUrl: "https://www.secp.gov.pk/" },
+  { body: "ICCI", name: "Islamabad Chamber of Commerce & Industry", label: "Member No.", number: "", verifyUrl: "https://www.icci.com.pk/" },
+  { body: "e-PADS", name: "PPRA Registered Government Supplier", label: "Supplier ID", number: "", verifyUrl: "https://eprocure.gov.pk/" },
+];

@@ -3,7 +3,7 @@ import NewsletterForm from "./NewsletterForm";
 import WhatsAppButton from "./WhatsAppButton";
 import Motion from "./Motion";
 import { KDesk } from "./illustrations";
-import { CONTACT, categories, products, offers, features, reels } from "./data";
+import { CONTACT, categories, products, offers, features, reels, registrations } from "./data";
 
 function Logo() {
   return (
@@ -26,6 +26,7 @@ export default function Home() {
             <a href="#products">Products</a>
             <a href="#offers">Prices</a>
             <a href="#videos">Videos</a>
+            <a href="#verified">Verified</a>
             <a href="#contact">Contact</a>
           </nav>
           <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm">Call now</a>
@@ -199,6 +200,35 @@ export default function Home() {
             <div className="center">
               <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-gold">More on Facebook</a>
               <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-insta">Follow on Instagram</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="verified" className="section section-alt">
+          <div className="container">
+            <div className="section-head">
+              <p className="eyebrow">Registrations</p>
+              <h2>A registered business you can verify</h2>
+              <p className="muted">Our registration details, so companies and government offices can buy from us with confidence.</p>
+            </div>
+            <div className="badges">
+              {registrations.map((r) => (
+                <div key={r.body + r.label} className={`badge${r.number ? "" : " badge-empty"}`}>
+                  <span className="badge-seal" aria-hidden="true">
+                    <Icon name="shield" size={22} />
+                  </span>
+                  <strong className="badge-body">{r.body}</strong>
+                  <span className="badge-name">{r.name}</span>
+                  {r.number ? (
+                    <>
+                      <span className="badge-num">{r.label}: {r.number}</span>
+                      <a href={r.verifyUrl} target="_blank" rel="noopener noreferrer" className="link small">Verify →</a>
+                    </>
+                  ) : (
+                    <span className="badge-num placeholder">{r.label}: add number</span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </section>

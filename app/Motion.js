@@ -13,6 +13,7 @@ const REVEAL_GROUPS = [
   ".reel",
   ".cta > *",
   ".marquee",
+  ".badge",
 ];
 
 export default function Motion() {
