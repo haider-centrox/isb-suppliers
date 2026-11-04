@@ -153,6 +153,7 @@ export default function Admin() {
       const r = await api("/api/admin/content");
       if (r.status === 401) return setStatus("locked");
       const j = await r.json();
+      if (!r.ok) throw new Error(j.error);
       setData(j.content); setSaved(JSON.stringify(j.content)); setStatus("ready");
     } catch {
       setStatus("error"); setMsg("Could not load the content. Check your connection and refresh.");
@@ -185,6 +186,7 @@ export default function Admin() {
   const reset = async () => {
     const r = await api("/api/admin/content", { method: "DELETE" });
     const j = await r.json();
+    if (!r.ok) { setMsg(j.error || "Reset failed"); setConfirmReset(false); return; }
     setData(j.content); setSaved(JSON.stringify(j.content)); setConfirmReset(false); setStatus("saved");
   };
 
@@ -207,7 +209,18 @@ export default function Admin() {
   }
 
   if (!data) {
-    return <main className="adm-center"><div className="adm-spinner big" />{msg && <p className="adm-error">{msg}</p>}</main>;
+    return (
+      <main className="adm-center">
+        {status === "error" ? (
+          <>
+            <p className="adm-error">{msg}</p>
+            <button type="button" className="adm-btn primary" onClick={load}>Try again</button>
+          </>
+        ) : (
+          <div className="adm-spinner big" />
+        )}
+      </main>
+    );
   }
 
   return (

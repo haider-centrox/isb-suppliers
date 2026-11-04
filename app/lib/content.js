@@ -64,7 +64,7 @@ function onNetlify() {
 
 // Any storage call that takes longer than this is abandoned, so a storage
 // problem can never take the website down (pages fall back to DEFAULTS).
-const TIMEOUT_MS = 4000;
+const TIMEOUT_MS = 9000;
 function withTimeout(promise, label) {
   let timer;
   return Promise.race([
@@ -117,6 +117,7 @@ function merge(saved) {
   };
 }
 
+// Public pages: never fail. If storage is unavailable, show the built-in content.
 export async function getContent() {
   try {
     return merge(await readRaw());
@@ -124,6 +125,12 @@ export async function getContent() {
     console.error("[content] read failed, using defaults:", err);
     return structuredClone(DEFAULTS);
   }
+}
+
+// Admin: must load the real saved content or fail loudly. Falling back to the
+// defaults here could let a later Save overwrite the client's real edits.
+export async function getContentStrict() {
+  return merge(await readRaw());
 }
 
 export async function saveContent(content) {
