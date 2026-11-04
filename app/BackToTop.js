@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function BackToTop() {
+export default function BackToTop({ label = "Back to top" }) {
   const [show, setShow] = useState(false);
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 900);
@@ -14,7 +14,7 @@ export default function BackToTop() {
     <button
       type="button"
       className={`to-top${show ? " show" : ""}`}
-      aria-label="Back to top"
+      aria-label={label}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

@@ -7,6 +7,7 @@ const DESC =
 
 export const metadata = {
   metadataBase: new URL(SITE),
+  alternates: { canonical: SITE, languages: { en: SITE, ur: `${SITE}/ur/` } },
   openGraph: {
     type: "website",
     url: SITE,
@@ -41,7 +42,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap"
           rel="stylesheet"
         />
       </head>

@@ -650,3 +650,72 @@ p { margin: 0; }
 .mmenu nav a svg { color: var(--accent); }
 .mmenu nav a:active { background: #f3f6fc; }
 .mmenu-call { margin-top: 24px; flex: none; }
+
+/* =========================================================
+   Language switch
+   ========================================================= */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff; font-weight: 600; font-size: 14px; white-space: nowrap;
+  transition: border-color .2s, background .2s, color .2s;
+}
+.lang-switch:hover { border-color: var(--accent); color: var(--accent); }
+.lang-switch svg { color: var(--accent); }
+.lang-switch [lang="ur"] { font-family: "Noto Nastaliq Urdu", serif; font-size: 14px; line-height: 1; padding-top: 4px; }
+.lang-switch-footer { height: auto; padding: 4px 12px; }
+.mmenu-lang {
+  display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; padding: 12px;
+  border: 1px solid var(--line); border-radius: 999px; font-weight: 600; color: var(--accent);
+}
+.mmenu-lang[lang="ur"] { font-family: "Noto Nastaliq Urdu", serif; }
+@media (max-width: 640px) {
+  .nav-actions > .lang-switch { height: 44px; width: 44px; padding: 0; justify-content: center; border-radius: 12px; }
+  .nav-actions > .lang-switch span { display: none; }
+}
+
+/* =========================================================
+   Urdu (RTL) typography
+   ========================================================= */
+.site-ur, .site-ur h1, .site-ur h2, .site-ur h3, .site-ur .btn, .site-ur input, .site-ur select, .site-ur textarea,
+.site-ur .logo-text, .site-ur .badge-body, .site-ur .marquee span, .site-ur .stats dt, .mmenu.site-ur nav a {
+  font-family: "Noto Nastaliq Urdu", "Inter", serif;
+}
+.site-ur { line-height: 2.1; }
+.site-ur h1 { font-size: clamp(30px, 4.2vw, 50px); line-height: 1.9; letter-spacing: 0; }
+.site-ur h2 { font-size: clamp(24px, 2.9vw, 36px); line-height: 1.85; letter-spacing: 0; }
+.site-ur h3 { line-height: 1.8; }
+.site-ur .eyebrow { letter-spacing: 0; text-transform: none; font-size: 14px; }
+.site-ur .chain-label { letter-spacing: 0; text-transform: none; }
+.site-ur .lead { font-size: 17px; line-height: 2.2; }
+.site-ur .btn { padding-top: 10px; padding-bottom: 14px; line-height: 1.6; }
+.site-ur .logo-text, .site-ur .badge-body, .site-ur .stats dt, .site-ur .step-num, .site-ur .price, .site-ur .offer-list strong { font-family: "Inter", sans-serif; }
+.site-ur .logo-text { font-family: "Fraunces", Georgia, serif; }
+.site-ur .marquee span { font-size: clamp(17px, 2vw, 22px); line-height: 2; }
+.site-ur .price, .site-ur .offer-list strong { font-family: "Noto Nastaliq Urdu", serif; }
+.mmenu.site-ur nav a { font-size: 21px; line-height: 2; padding: 8px 4px; }
+.site-ur .faq summary { line-height: 1.9; }
+.site-ur .badge-name { line-height: 1.9; }
+.site-ur .hero h1 em { padding-bottom: .15em; }
+
+/* RTL layout */
+[dir="rtl"] .section-head.left { text-align: right; }
+[dir="rtl"] .hero-stage { right: auto; left: max(2%, calc((100% - 1180px) / 2)); }
+[dir="rtl"] .hero-bg .hero-badge { right: auto; left: 0; }
+[dir="rtl"] .hero-shade {
+  background:
+    linear-gradient(0deg, rgba(13,19,34,.7) 0%, transparent 25%),
+    radial-gradient(800px 500px at 85% 30%, rgba(37,99,201,.28), transparent 60%);
+}
+[dir="rtl"] .offer-list li:hover { padding-left: 24px; padding-right: 32px; }
+[dir="rtl"] .flow i { animation-direction: reverse; }
+[dir="rtl"] .marquee-track { direction: ltr; }
+[dir="rtl"] .marquee span { direction: rtl; }
+[dir="rtl"] .mmenu .chev { transform: scaleX(-1); }
+[dir="rtl"] .nav-links a::after { transform-origin: left; }
+[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
+@media (max-width: 900px) {
+  [dir="rtl"] .hero-stage { left: 50%; right: auto; }
+  [dir="rtl"] .hero-bg .hero-badge { left: auto; }
+}
+[dir="rtl"] .hero-bg .hero-badge { bottom: 90px; }
+@media (max-width: 900px) { [dir="rtl"] .hero-bg .hero-badge { bottom: auto; } }

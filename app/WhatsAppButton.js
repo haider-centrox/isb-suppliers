@@ -1,14 +1,11 @@
-const NUMBER = "923306723330";
-const MESSAGE = "Hi ISB Suppliers, I'd like to place an order.";
-
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ number, message, label, aria }) {
   return (
     <a
-      href={`https://wa.me/${NUMBER}?text=${encodeURIComponent(MESSAGE)}`}
+      href={`https://wa.me/${number}?text=${encodeURIComponent(message)}`}
       className="wa-float"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
+      aria-label={aria}
     >
       <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
         <path
@@ -16,7 +13,7 @@ export default function WhatsAppButton() {
           d="M16.04 3C9.4 3 4 8.36 4 14.98c0 2.32.66 4.5 1.82 6.35L4 29l7.88-1.77A12.1 12.1 0 0 0 16.04 27C22.68 27 28 21.6 28 14.98 28 8.36 22.68 3 16.04 3Zm0 21.8c-1.86 0-3.6-.5-5.1-1.4l-.37-.22-4.68 1.05 1.08-4.5-.24-.38A9.7 9.7 0 0 1 6.3 15c0-5.38 4.37-9.76 9.74-9.76 5.36 0 9.66 4.38 9.66 9.76 0 5.37-4.3 9.8-9.66 9.8Zm5.35-7.3c-.3-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.94-.93 1.13-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.37-1.47a8.9 8.9 0 0 1-1.63-2.04c-.17-.3-.02-.45.13-.6.13-.13.3-.34.44-.51.15-.17.2-.3.3-.49.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.44 0 1.44 1.05 2.83 1.2 3.03.15.2 2.06 3.15 5 4.42.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.73-.7 1.97-1.39.25-.68.25-1.27.17-1.39-.07-.12-.27-.2-.56-.34Z"
         />
       </svg>
-      <span className="wa-label">Chat on WhatsApp</span>
+      <span className="wa-label">{label}</span>
     </a>
   );
 }
