@@ -10,9 +10,8 @@ import LangSync from "./LangSync";
 import { CartProvider } from "./CartContext";
 import CartButton from "./CartButton";
 import CartDrawer from "./CartDrawer";
-import { SHOW_LANG_SWITCH, SITE_URL, categoryIcons, featureIcons, registrations } from "./data";
-import { getContent } from "./lib/content";
-import { buildView } from "./lib/view";
+import { dict } from "./i18n";
+import { CONTACT, SHOW_LANG_SWITCH, BANK, SITE_URL, categoryIcons, featureIcons, productMeta, reels, registrations } from "./data";
 
 function Logo({ home, brand }) {
   return (
@@ -34,11 +33,11 @@ function LangSwitch({ t, className = "" }) {
   );
 }
 
-export default async function Site({ lang = "en" }) {
-  const content = await getContent();
-  const { t, C, products, reels, bank } = buildView(content, lang);
-  const home = lang === "en" ? "/" : "/ur";
-  const wa = `https://wa.me/${C.whatsapp}`;
+export default function Site({ lang = "en" }) {
+  const t = dict[lang];
+  const home = lang === "en" ? "/" : "/ur/";
+  const products = t.products.map((p, i) => ({ ...p, ...productMeta[i] }));
+  const wa = `https://wa.me/${CONTACT.whatsapp}`;
   const navLinks = t.nav.filter(([href]) => href !== "#verified");
 
   return (
@@ -54,7 +53,7 @@ export default async function Site({ lang = "en" }) {
           <div className="nav-actions">
             {SHOW_LANG_SWITCH && <LangSwitch t={t} />}
             <CartButton label={t.cart.open} />
-            <a href={C.phoneHref} className="btn btn-dark btn-sm nav-call" aria-label={`${t.call} ${C.phone}`}>
+            <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm nav-call" aria-label={`${t.call} ${CONTACT.phone}`}>
               <Icon name="phone" size={17} />
               <span className="nav-call-label">{t.callNow}</span>
             </a>
@@ -65,8 +64,8 @@ export default async function Site({ lang = "en" }) {
               dir={t.dir}
               home={home}
               brand={t.brand}
-              phoneHref={C.phoneHref}
-              callText={`${t.call} ${C.phone}`}
+              phoneHref={CONTACT.phoneHref}
+              callText={`${t.call} ${CONTACT.phone}`}
               switchTo={SHOW_LANG_SWITCH ? t.switchTo : null}
             />
           </div>
@@ -87,7 +86,7 @@ export default async function Site({ lang = "en" }) {
             <div className="hero-copy">
               <p className="eyebrow"><span className="pill-live">{t.hero.pill}</span></p>
               <h1>
-                {t.hero.h1.map((seg, i) => (i % 2 ? <em key={i}>{seg}</em> : seg))}
+                {t.hero.h1[0]}<em>{t.hero.h1[1]}</em>{t.hero.h1[2]}<em>{t.hero.h1[3]}</em>{t.hero.h1[4]}
               </h1>
               <p className="lead">{t.hero.lead}</p>
               <div className="hero-actions">
@@ -192,7 +191,7 @@ export default async function Site({ lang = "en" }) {
             </div>
             <ProductGrid
               products={products}
-              whatsapp={C.whatsapp}
+              whatsapp={CONTACT.whatsapp}
               filters={t.filters}
               filterAria={t.filterAria}
               orderLabel={t.order}
@@ -237,8 +236,8 @@ export default async function Site({ lang = "en" }) {
               <p className="eyebrow">{t.offersHead.eyebrow}</p>
               <h2>{t.offersHead.h2}</h2>
               <p className="muted">{t.offersHead.text}</p>
-              <a href={C.phoneHref} className="btn btn-dark" style={{ marginTop: 24 }}>
-                {t.call} <span dir="ltr">{C.phone}</span>
+              <a href={CONTACT.phoneHref} className="btn btn-dark" style={{ marginTop: 24 }}>
+                {t.call} <span dir="ltr">{CONTACT.phone}</span>
               </a>
             </div>
             <ul className="offer-list">
@@ -273,8 +272,8 @@ export default async function Site({ lang = "en" }) {
               ))}
             </div>
             <div className="center">
-              <a href={C.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-gold">{t.videos.fb}</a>
-              <a href={C.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-insta">{t.videos.ig}</a>
+              <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-gold">{t.videos.fb}</a>
+              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-insta">{t.videos.ig}</a>
             </div>
           </div>
         </section>
@@ -331,16 +330,16 @@ export default async function Site({ lang = "en" }) {
               <h2>{t.contact.h2}</h2>
               <p className="muted">{t.contact.text}</p>
               <ul className="contact-list">
-                <li><Icon name="phone" size={20} /><a href={C.phoneHref} dir="ltr">{C.phone}</a></li>
-                <li><Icon name="phone" size={20} /><a href={wa} target="_blank" rel="noopener noreferrer">{t.contact.whatsapp} <span dir="ltr">{C.whatsappDisplay}</span></a></li>
-                <li><Icon name="mail" size={20} /><a href={`mailto:${C.email}`} dir="ltr">{C.email}</a></li>
+                <li><Icon name="phone" size={20} /><a href={CONTACT.phoneHref} dir="ltr">{CONTACT.phone}</a></li>
+                <li><Icon name="phone" size={20} /><a href={wa} target="_blank" rel="noopener noreferrer">{t.contact.whatsapp} <span dir="ltr">{CONTACT.whatsappDisplay}</span></a></li>
+                <li><Icon name="mail" size={20} /><a href={`mailto:${CONTACT.email}`} dir="ltr">{CONTACT.email}</a></li>
                 <li><Icon name="pin" size={20} /><span>{t.contact.city}</span></li>
                 <li><Icon name="clock" size={20} /><span>{t.contact.hours}</span></li>
-                <li><Icon name="globe" size={20} /><span><a href={C.facebook} target="_blank" rel="noopener noreferrer">Facebook</a> · <a href={C.instagram} target="_blank" rel="noopener noreferrer" dir="ltr">Instagram @islamabadsuppliers</a></span></li>
+                <li><Icon name="globe" size={20} /><span><a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer">Facebook</a> · <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" dir="ltr">Instagram @islamabadsuppliers</a></span></li>
               </ul>
             </div>
             <div className="cta-box">
-              <QuoteForm whatsapp={C.whatsapp} t={t.quote} />
+              <QuoteForm whatsapp={CONTACT.whatsapp} t={t.quote} />
             </div>
           </div>
         </section>
@@ -350,17 +349,17 @@ export default async function Site({ lang = "en" }) {
         <div className="container footer-inner">
           <Logo home={home} brand={t.brand} />
           <div className="socials">
-            <a href={C.facebook} target="_blank" rel="noopener noreferrer" className="link">Facebook</a>
-            <a href={C.instagram} target="_blank" rel="noopener noreferrer" className="link">Instagram</a>
+            <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="link">Facebook</a>
+            <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="link">Instagram</a>
             {SHOW_LANG_SWITCH && <LangSwitch t={t} className="lang-switch-footer" />}
           </div>
           <p>© {new Date().getFullYear()} {t.brand}. {t.footer}</p>
         </div>
       </footer>
 
-      <WhatsAppButton number={C.whatsapp} message={t.waFloat.msg} label={t.waFloat.label} aria={t.waFloat.aria} />
+      <WhatsAppButton number={CONTACT.whatsapp} message={t.waFloat.msg} label={t.waFloat.label} aria={t.waFloat.aria} />
       <BackToTop label={t.toTop} />
-      <CartDrawer t={t.cart} lang={t.lang} whatsapp={C.whatsapp} bank={bank} siteUrl={SITE_URL} cities={t.quote.cities} />
+      <CartDrawer t={t.cart} lang={t.lang} whatsapp={CONTACT.whatsapp} bank={BANK} siteUrl={SITE_URL} cities={t.quote.cities} />
       <Motion />
     </div>
     </CartProvider>

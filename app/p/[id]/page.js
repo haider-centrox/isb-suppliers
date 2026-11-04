@@ -1,34 +1,32 @@
-import { getContent } from "../../lib/content";
-import { buildView } from "../../lib/view";
-import { SITE_URL } from "../../data";
+import { dict } from "../../i18n";
+import { CONTACT, SITE_URL, productMeta } from "../../data";
 import { KDesk } from "../../illustrations";
-import { notFound } from "next/navigation";
 
 // One small page per product. Order messages on WhatsApp link here, and WhatsApp
 // shows this page's og:image, so the shop sees the product photo in the chat.
 
-export const dynamic = "force-dynamic";
+export const dynamicParams = false;
 
-async function find(id) {
-  const content = await getContent();
-  const v = buildView(content, "en");
-  const p = v.products.find((x) => x.id === id);
-  return p ? { p, v } : null;
+export function generateStaticParams() {
+  return productMeta.map((p) => ({ id: p.id }));
+}
+
+function find(id) {
+  const i = productMeta.findIndex((p) => p.id === id);
+  return i < 0 ? null : { ...dict.en.products[i], ...productMeta[i] };
 }
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const found = await find(id);
-  if (!found) return { title: "Product not found | ISB Suppliers" };
-  const { p } = found;
-  const img = p.img ? `${SITE_URL}${p.img}` : `${SITE_URL}/og-image.jpg`;
+  const p = find(id);
+  const img = `${SITE_URL}${p.img}`;
   return {
     title: `${p.name} — ${p.price} | ISB Suppliers`,
     description: p.note,
-    alternates: { canonical: `${SITE_URL}/p/${p.id}` },
+    alternates: { canonical: `${SITE_URL}/p/${p.id}/` },
     openGraph: {
       type: "website",
-      url: `${SITE_URL}/p/${p.id}`,
+      url: `${SITE_URL}/p/${p.id}/`,
       siteName: "ISB Suppliers",
       title: `${p.name} — ${p.price}`,
       description: p.note,
@@ -40,10 +38,8 @@ export async function generateMetadata({ params }) {
 
 export default async function ProductPage({ params }) {
   const { id } = await params;
-  const found = await find(id);
-  if (!found) notFound();
-  const { p, v } = found;
-  const wa = `https://wa.me/${v.C.whatsapp}?text=${encodeURIComponent(`${v.t.orderMsg}${p.name}`)}`;
+  const p = find(id);
+  const wa = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(`${dict.en.orderMsg}${p.name}`)}`;
   return (
     <main className="pp">
       <a href="/" className="pp-brand">
