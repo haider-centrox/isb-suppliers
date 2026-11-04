@@ -69,5 +69,4 @@ export function useCart() {
   return useContext(CartCtx);
 }
 
-export const formatPKR = (n, lang) =>
-  lang === "ur" ? `${n.toLocaleString("en-PK")} روپے` : `Rs. ${n.toLocaleString("en-PK")}`;
+export { formatPKR } from "./lib/format";

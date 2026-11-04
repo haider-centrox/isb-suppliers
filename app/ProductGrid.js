@@ -4,10 +4,12 @@ import { useState } from "react";
 import { KDesk } from "./illustrations";
 import AddToCart from "./AddToCart";
 
-const FILTER_KEYS = ["All", "Gaming", "Executive", "Ergonomic", "Tables"];
+const BASE_KEYS = ["Gaming", "Executive", "Ergonomic", "Tables"];
 
 export default function ProductGrid({ products, whatsapp, filters, filterAria, orderLabel, orderMsg, addLabel, addedLabel }) {
   const [active, setActive] = useState("All");
+  const present = [...new Set(products.map((p) => p.type))];
+  const FILTER_KEYS = ["All", ...BASE_KEYS.filter((k) => present.includes(k)), ...present.filter((k) => !BASE_KEYS.includes(k))];
   const shown = active === "All" ? products : products.filter((p) => p.type === active);
   const wa = (name) => `https://wa.me/${whatsapp}?text=${encodeURIComponent(`${orderMsg}${name}`)}`;
 
@@ -23,7 +25,7 @@ export default function ProductGrid({ products, whatsapp, filters, filterAria, o
             className={`filter${active === f ? " is-active" : ""}`}
             onClick={() => setActive(f)}
           >
-            {filters[f]}
+            {filters[f] || f}
             <span className="filter-count">{f === "All" ? products.length : products.filter((p) => p.type === f).length}</span>
           </button>
         ))}
