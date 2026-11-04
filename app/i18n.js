@@ -4,7 +4,7 @@
 const en = {
   lang: "en",
   dir: "ltr",
-  switchTo: { href: "/ur/", label: "اردو", aria: "اردو میں دیکھیں" },
+  switchTo: { href: "/ur/", label: "Urdu", aria: "View in Urdu (اردو)" },
   brand: "ISB Suppliers",
   nav: [
     ["#direct", "Why us"],
@@ -174,7 +174,7 @@ const en = {
 const ur = {
   lang: "ur",
   dir: "rtl",
-  switchTo: { href: "/", label: "English", aria: "View in English" },
+  switchTo: { href: "/", label: "انگلش", aria: "انگریزی میں دیکھیں (English)" },
   brand: "ISB Suppliers",
   nav: [
     ["#direct", "ہم کیوں"],

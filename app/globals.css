@@ -719,3 +719,4 @@ p { margin: 0; }
 }
 [dir="rtl"] .hero-bg .hero-badge { bottom: 90px; }
 @media (max-width: 900px) { [dir="rtl"] .hero-bg .hero-badge { bottom: auto; } }
+.site-ur .lang-switch span, .mmenu.site-ur .mmenu-lang { font-family: "Noto Nastaliq Urdu", serif; line-height: 1; padding-top: 4px; }
