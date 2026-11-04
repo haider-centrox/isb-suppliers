@@ -69,7 +69,7 @@ export default function CartDrawer({ t, lang, whatsapp, bank, siteUrl, cities })
       `*${t.msg.items}*`,
       ...items.flatMap((i, n) => [
         `${n + 1}. ${i.name} × ${i.qty} — ${i.priceValue != null ? money(i.priceValue * i.qty) : t.onRequest}`,
-        `   ${t.msg.photo}: ${siteUrl}/p/${i.id}/`,
+        `   ${t.msg.photo}: ${siteUrl}/p/${i.id}`,
       ]),
       "",
       `*${t.msg.total}:* ${totalText}`,

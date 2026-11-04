@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  trailingSlash: true,
   images: { unoptimized: true },
+  // Uploaded product photos can be large; allow a bit more than the default body size.
+  experimental: { serverActions: { bodySizeLimit: "6mb" } },
 };
 
 export default nextConfig;
