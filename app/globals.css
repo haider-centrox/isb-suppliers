@@ -28,7 +28,7 @@ p { margin: 0; }
 .muted { color: var(--muted); }
 .muted-light { color: #aeb6c8; margin-top: 14px; }
 .small { font-size: 14px; }
-.center { display: flex; justify-content: center; margin-top: 40px; }
+.center { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
 .eyebrow {
   font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 12px;
@@ -51,6 +51,8 @@ p { margin: 0; }
 .btn-gold { background: var(--accent); color: #fff; }
 .btn-gold:hover { background: #3474dd; }
 .link { font-weight: 600; color: var(--accent); }
+.btn-insta { background: linear-gradient(45deg, #f09433, #dc2743 50%, #bc1888); color: #fff; }
+.socials { display: flex; gap: 20px; }
 
 /* Nav */
 .nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }

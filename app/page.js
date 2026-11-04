@@ -49,7 +49,7 @@ export default function Home() {
                 <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Order on WhatsApp</a>
               </div>
               <dl className="stats">
-                <div><dt>4.6K+</dt><dd>Facebook followers</dd></div>
+                <div><dt>8K+</dt><dd>Facebook &amp; Instagram followers</dd></div>
                 <div><dt>5</dt><dd>Product categories</dd></div>
                 <div><dt>🇵🇰</dt><dd>Nationwide delivery</dd></div>
               </dl>
@@ -178,7 +178,8 @@ export default function Home() {
               ))}
             </div>
             <div className="center">
-              <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-gold">More videos on Facebook</a>
+              <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="btn btn-gold">More on Facebook</a>
+              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-insta">Follow on Instagram</a>
             </div>
           </div>
         </section>
@@ -195,6 +196,7 @@ export default function Home() {
                 <li><Icon name="mail" size={20} /><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
                 <li><Icon name="pin" size={20} /><span>{CONTACT.city} · delivering across Pakistan</span></li>
                 <li><Icon name="clock" size={20} /><span>{CONTACT.hours}</span></li>
+                <li><Icon name="globe" size={20} /><span><a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer">Facebook</a> · <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">Instagram @islamabadsuppliers</a></span></li>
               </ul>
             </div>
             <div className="cta-box">
@@ -209,7 +211,10 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-inner">
           <Logo />
-          <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="link">Follow us on Facebook</a>
+          <div className="socials">
+            <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="link">Facebook</a>
+            <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="link">Instagram</a>
+          </div>
           <p>© {new Date().getFullYear()} ISB Suppliers. All rights reserved.</p>
         </div>
       </footer>
