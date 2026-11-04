@@ -1,10 +1,12 @@
 import Icon from "./icons";
 import Seal from "./Seal";
-import NewsletterForm from "./NewsletterForm";
 import WhatsAppButton from "./WhatsAppButton";
 import Motion from "./Motion";
-import { KDesk } from "./illustrations";
-import { CONTACT, categories, products, offers, features, reels, registrations } from "./data";
+import MobileMenu from "./MobileMenu";
+import BackToTop from "./BackToTop";
+import ProductGrid from "./ProductGrid";
+import QuoteForm from "./QuoteForm";
+import { CONTACT, categories, products, offers, features, reels, registrations, steps, faqs } from "./data";
 
 function Logo() {
   return (
@@ -15,7 +17,7 @@ function Logo() {
   );
 }
 
-const featureIcons = ["shield", "truck", "handshake", "globe"];
+const featureIcons = ["ship", "truck", "tag", "globe"];
 
 export default function Home() {
   return (
@@ -24,13 +26,18 @@ export default function Home() {
         <div className="container nav-inner">
           <Logo />
           <nav className="nav-links" aria-label="Main">
+            <a href="#direct">Why us</a>
             <a href="#products">Products</a>
+            <a href="#how">How to order</a>
             <a href="#offers">Prices</a>
             <a href="#videos">Videos</a>
-            <a href="#verified">Verified</a>
+            <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
           </nav>
-          <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm">Call now</a>
+          <div className="nav-actions">
+            <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm">Call now</a>
+            <MobileMenu phoneHref={CONTACT.phoneHref} phone={CONTACT.phone} />
+          </div>
         </div>
       </header>
 
@@ -46,14 +53,14 @@ export default function Home() {
           <div className="hero-shade" aria-hidden="true" />
           <div className="container hero-inner">
             <div className="hero-copy">
-              <p className="eyebrow">Supplying trust. Delivering value.</p>
+              <p className="eyebrow"><span className="pill-live">Direct import · No middleman</span></p>
               <h1>
                 Your <em>trusted</em> partner in quality products &amp; <em>reliable</em> supply.
               </h1>
               <p className="lead">
-                Islamabad&apos;s procurement and supply partner for furniture, IT equipment,
-                electronics, appliances and complete office solutions, at competitive prices and
-                delivered across Pakistan.
+                High-quality furniture, IT equipment and office solutions, imported by container
+                straight to our shop in Islamabad. No dealers, no middlemen, so you pay the
+                lowest rates in the market.
               </p>
               <div className="hero-actions">
                 <a href="#products" className="btn btn-dark">See products</a>
@@ -67,8 +74,8 @@ export default function Home() {
             </div>
             <div className="hero-art">
               <div className="hero-badge">
-                <strong>Executive mesh chairs</strong>
-                <span>from Rs. 23,000</span>
+                <strong>Container prices</strong>
+                <span>Executive mesh chairs from Rs. 23,000</span>
               </div>
             </div>
           </div>
@@ -85,6 +92,55 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="direct" className="section direct">
+          <div className="container direct-inner">
+            <div className="section-head left">
+              <p className="eyebrow">Why we&apos;re cheaper</p>
+              <h2>Straight from the container to our shop. <em>No middleman.</em></h2>
+              <p className="muted">
+                Most furniture passes through an importer, a wholesaler and a dealer before it reaches
+                you, and each one adds their margin. We import directly, so that markup stays in your
+                pocket. Same high-quality products, at the lowest rates.
+              </p>
+              <ul className="direct-points">
+                <li><Icon name="tag" size={20} /><span><strong>Lowest rates</strong> with no dealer markup</span></li>
+                <li><Icon name="shield" size={20} /><span><strong>High quality</strong> checked by us at the source</span></li>
+                <li><Icon name="ship" size={20} /><span><strong>Fresh container stock</strong> arriving regularly</span></li>
+              </ul>
+            </div>
+
+            <div className="chain-card">
+              <div className="chain chain-us">
+                <span className="chain-label">ISB Suppliers</span>
+                <div className="chain-row">
+                  {[["factory", "Factory"], ["ship", "Container"], ["store", "Our shop"], ["user", "You"]].map(([ic, t], i) => (
+                    <div key={t} className="node" style={{ "--n": i }}>
+                      <span className="node-ic"><Icon name={ic} size={22} /></span>
+                      <span className="node-t">{t}</span>
+                    </div>
+                  ))}
+                  <div className="flow" aria-hidden="true"><i /></div>
+                </div>
+                <div className="chain-result good"><strong>Lowest price</strong> · 0 middlemen</div>
+              </div>
+
+              <div className="chain chain-them">
+                <span className="chain-label">Typical market</span>
+                <div className="chain-row">
+                  {[["factory", "Factory"], ["ship", "Importer"], ["store", "Wholesaler"], ["store", "Dealer"], ["user", "You"]].map(([ic, t], i) => (
+                    <div key={t} className={`node${i > 0 && i < 4 ? " node-mid" : ""}`}>
+                      <span className="node-ic"><Icon name={ic} size={18} /></span>
+                      <span className="node-t">{t}</span>
+                      {i > 0 && i < 4 && <span className="markup">+ margin</span>}
+                    </div>
+                  ))}
+                </div>
+                <div className="chain-result bad">Higher price · 3 middlemen</div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -112,35 +168,25 @@ export default function Home() {
               <p className="eyebrow">From our showroom</p>
               <h2>Office, executive &amp; gaming chairs</h2>
             </div>
-            <div className="grid-3">
-              {products.map((p) => (
-                <article key={p.name + p.img} className="product">
-                  <div className="product-art">
-                    {p.tag && <span className="tag">{p.tag}</span>}
-                    <img src={p.img} alt={p.name} />
-                  </div>
-                  <div className="product-body">
-                    <h3>{p.name}</h3>
-                    <p className="muted small">{p.note}</p>
-                    <div className="product-row">
-                      <span className="price">{p.price}</span>
-                      <a href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(`Hi ISB Suppliers, I want to order: ${p.name}`)}`} target="_blank" rel="noopener noreferrer" className="link">Order →</a>
-                    </div>
-                  </div>
-                </article>
-              ))}
-              <article className="product">
-                <div className="product-art illus"><span className="tag">Custom</span><KDesk /></div>
-                <div className="product-body">
-                  <h3>K-Shaped Gaming Table</h3>
-                  <p className="muted small">Sturdy steel K-frame, black top, room for multiple monitors</p>
-                  <div className="product-row">
-                    <span className="price">Ask for price</span>
-                    <a href={`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent("Hi ISB Suppliers, I want a price for the K-shaped gaming table")}`} target="_blank" rel="noopener noreferrer" className="link">Order →</a>
-                  </div>
-                </div>
-              </article>
+            <ProductGrid products={products} whatsapp={CONTACT.whatsapp} />
+          </div>
+        </section>
+
+        <section id="how" className="section">
+          <div className="container">
+            <div className="section-head">
+              <p className="eyebrow">How to order</p>
+              <h2>From message to delivery in four simple steps</h2>
             </div>
+            <ol className="steps">
+              {steps.map((st, i) => (
+                <li key={st.title} className="step">
+                  <span className="step-num">{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{st.title}</h3>
+                  <p>{st.text}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -232,7 +278,25 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="section">
+        <section id="faq" className="section">
+          <div className="container faq-wrap">
+            <div className="section-head left">
+              <p className="eyebrow">FAQ</p>
+              <h2>Questions customers ask us</h2>
+              <p className="muted">Can&apos;t find your answer? Message us on WhatsApp and we&apos;ll reply quickly.</p>
+            </div>
+            <div className="faq">
+              {faqs.map((f, i) => (
+                <details key={f.q} open={i === 0}>
+                  <summary>{f.q}<span className="faq-icon" aria-hidden="true" /></summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="section section-alt">
           <div className="container cta">
             <div>
               <img src="/images/logo.jpg" alt="ISB Suppliers logo" className="cta-logo" width="230" height="155" />
@@ -248,9 +312,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="cta-box">
-              <h3>Get our latest deals</h3>
-              <p>New stock and price drops, straight to your inbox.</p>
-              <NewsletterForm />
+              <QuoteForm whatsapp={CONTACT.whatsapp} />
             </div>
           </div>
         </section>
@@ -268,6 +330,7 @@ export default function Home() {
       </footer>
 
       <WhatsAppButton />
+      <BackToTop />
       <Motion />
     </>
   );

@@ -21,11 +21,11 @@ export const categories = [
 ];
 
 export const products = [
-  { name: "Gaming Chair", note: "Red & black, racing style with neck and lumbar pillows", price: "Rs. 10,000", tag: "Hot deal", img: "/images/chair-gaming-red-relax.jpg" },
-  { name: "Executive Mesh Chair", note: "Black mesh, adjustable headrest and armrests", price: "Rs. 23,000", tag: "Bestseller", img: "/images/chair-black-mesh-executive.jpg" },
-  { name: "Premium Ergonomic Chair", note: "Full mesh back with built-in lumbar support", price: "Rs. 45,000", tag: "Premium", img: "/images/chair-ergonomic-premium.jpg" },
-  { name: "Executive Chair", note: "High-back mesh with headrest, chrome base", price: "Rs. 15,000", img: "/images/chair-grey-mesh-headrest.jpg" },
-  { name: "Gaming Chair — White Edition", note: "Black & white with neck and lumbar pillows", price: "Rs. 10,000", img: "/images/chair-gaming-white-black.jpg" },
+  { name: "Gaming Chair", type: "Gaming", note: "Red & black, racing style with neck and lumbar pillows", price: "Rs. 10,000", tag: "Hot deal", img: "/images/chair-gaming-red-relax.jpg" },
+  { name: "Executive Mesh Chair", type: "Executive", note: "Black mesh, adjustable headrest and armrests", price: "Rs. 23,000", tag: "Bestseller", img: "/images/chair-black-mesh-executive.jpg" },
+  { name: "Premium Ergonomic Chair", type: "Ergonomic", note: "Full mesh back with built-in lumbar support", price: "Rs. 45,000", tag: "Premium", img: "/images/chair-ergonomic-premium.jpg" },
+  { name: "Executive Chair", type: "Executive", note: "High-back mesh with headrest, chrome base", price: "Rs. 15,000", img: "/images/chair-grey-mesh-headrest.jpg" },
+  { name: "Gaming Chair — White Edition", type: "Gaming", note: "Black & white with neck and lumbar pillows", price: "Rs. 10,000", img: "/images/chair-gaming-white-black.jpg" },
 ];
 
 export const offers = [
@@ -42,9 +42,9 @@ export const offers = [
 ];
 
 export const features = [
-  { title: "Quality Products", text: "Every piece checked before it leaves our warehouse." },
+  { title: "Direct Import", text: "Container straight to our shop, no middlemen." },
   { title: "On Time Delivery", text: "Real orders, delivered when we promise." },
-  { title: "Trusted Partner", text: "8,000+ followers across Facebook and Instagram." },
+  { title: "Lowest Rates", text: "High quality at prices dealers can't match." },
   { title: "Nationwide Supply", text: "Based in Islamabad, delivering across Pakistan." },
 ];
 
@@ -71,4 +71,21 @@ export const registrations = [
     seal: { abbr: "ICCI", ring: "CHAMBER • MEMBER • ISLAMABAD •", color: "#7a1f2b", accent: "#c2414f" } },
   { body: "e-PADS", name: "PPRA Registered Government Supplier", label: "Supplier ID", number: "", verifyUrl: "https://eprocure.gov.pk/",
     seal: { abbr: "PPRA", ring: "GOVT SUPPLIER • e-PADS •", color: "#5b3a00", accent: "#c08a1e" } },
+];
+
+export const steps = [
+  { title: "Choose", text: "Browse our products or tell us what your home, office or shop needs." },
+  { title: "Get a quote", text: "Message us on WhatsApp or call. We reply with today's price and options." },
+  { title: "Customize", text: "Need a different size, colour or a full office layout? We customize to order." },
+  { title: "Delivered", text: "We deliver your order and help set it up, so it's ready to use." },
+];
+
+export const faqs = [
+  { q: "Which areas do you deliver to?", a: "We deliver across Islamabad and Rawalpindi. For other cities in Pakistan, message us on WhatsApp and we'll confirm delivery and charges." },
+  { q: "Can you customize furniture?", a: "Yes. We make customized conference tables, office tables and complete office setups to your size and layout." },
+  { q: "Do you take bulk or office orders?", a: "Yes. We supply complete offices, from chairs and workstations to IT equipment and electronics. Ask us for a bulk quote." },
+  { q: "Why are your prices lower than other shops?", a: "We import directly in containers to our own shop. There's no importer, wholesaler or dealer in between taking a cut, so we can sell the same quality for less." },
+  { q: "Are your prices fixed?", a: "Prices change with stock and offers. The prices on this site are our current offers; message us for today's rate." },
+  { q: "Do you have student offers?", a: "Yes. Our student table + chair offer starts from Rs. 10,000." },
+  { q: "How do I place an order?", a: "Tap Order on any product, use the quick quote form, or call us. We'll confirm the details and delivery time on WhatsApp." },
 ];

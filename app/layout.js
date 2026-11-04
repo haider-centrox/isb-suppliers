@@ -45,7 +45,37 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FurnitureStore",
+              name: "ISB Suppliers",
+              slogan: "Supplying Trust. Delivering Value.",
+              url: SITE,
+              logo: `${SITE}/images/logo.jpg`,
+              image: `${SITE}/og-image.jpg`,
+              telephone: "+92-330-6723330",
+              email: "islamabadsuppliers@gmail.com",
+              address: { "@type": "PostalAddress", addressLocality: "Islamabad", addressCountry: "PK" },
+              areaServed: ["Islamabad", "Rawalpindi"],
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                opens: "00:00",
+                closes: "23:59",
+              },
+              sameAs: [
+                "https://www.facebook.com/profile.php?id=61594155209042",
+                "https://www.instagram.com/islamabadsuppliers/",
+              ],
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
