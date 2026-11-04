@@ -35,7 +35,10 @@ export default function Home() {
             <a href="#contact">Contact</a>
           </nav>
           <div className="nav-actions">
-            <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm">Call now</a>
+            <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm nav-call" aria-label={`Call ${CONTACT.phone}`}>
+              <Icon name="phone" size={17} />
+              <span className="nav-call-label">Call now</span>
+            </a>
             <MobileMenu phoneHref={CONTACT.phoneHref} phone={CONTACT.phone} />
           </div>
         </div>
