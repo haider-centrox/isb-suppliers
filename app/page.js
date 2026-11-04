@@ -35,7 +35,11 @@ export default function Home() {
       <main>
         <section className="hero hero-bg">
           <div className="hero-media" aria-hidden="true">
-            <img src="/images/hero-black-chair.jpg" alt="" fetchPriority="high" />
+            <div className="hero-stage">
+              <div className="hero-spot" />
+              <div className="hero-floor" />
+              <img className="hero-chair" src="/images/hero-chair-cutout.webp" alt="" fetchPriority="high" width="652" height="1134" />
+            </div>
           </div>
           <div className="hero-shade" aria-hidden="true" />
           <div className="container hero-inner">
