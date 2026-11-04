@@ -18,9 +18,11 @@ const withTimeout = (p, label) => {
   return Promise.race([p, new Promise((_, r) => { t = setTimeout(() => r(new Error(`${label} timed out`)), TIMEOUT_MS); })]).finally(() => clearTimeout(t));
 };
 
+// Next.js replaces the global fetch inside the server; Netlify Blobs calls hang
+// through it on Netlify. Give Blobs a plain fetch (undici) instead.
 async function store() {
-  const { getStore } = await import("@netlify/blobs");
-  return getStore(STORE);
+  const [{ getStore }, { fetch }] = await Promise.all([import("@netlify/blobs"), import("undici")]);
+  return getStore({ name: STORE, fetch });
 }
 
 export async function putImage(key, buf, contentType) {

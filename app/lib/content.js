@@ -61,7 +61,6 @@ export const DEFAULTS = {
 function onNetlify() {
   return Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext || process.env.NETLIFY);
 }
-console.log("[content] module loaded; blobs context:", Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext), "NETLIFY env:", Boolean(process.env.NETLIFY));
 
 // Any storage call that takes longer than this is abandoned, so a storage
 // problem can never take the website down (pages fall back to DEFAULTS).
@@ -74,9 +73,11 @@ function withTimeout(promise, label) {
   ]).finally(() => clearTimeout(timer));
 }
 
+// Next.js replaces the global fetch inside the server; Netlify Blobs calls hang
+// through it on Netlify. Give Blobs a plain fetch (undici) instead.
 async function store() {
-  const { getStore } = await import("@netlify/blobs");
-  return getStore(STORE);
+  const [{ getStore }, { fetch }] = await Promise.all([import("@netlify/blobs"), import("undici")]);
+  return getStore({ name: STORE, fetch });
 }
 
 async function readRaw() {
