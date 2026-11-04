@@ -1,33 +1,34 @@
-import { Sofa, Armchair, Bed, Dining, Desk, Lamp } from "./illustrations";
+import { KDesk, ErgoChair, ExecDesk, Workstation, Conference, Storage } from "./illustrations";
 import NewsletterForm from "./NewsletterForm";
+import WhatsAppButton from "./WhatsAppButton";
 
 const categories = [
-  { name: "Living Room", count: "48 pieces", Art: Sofa, bg: "#efe4d2" },
-  { name: "Bedroom", count: "36 pieces", Art: Bed, bg: "#e6ebe3" },
-  { name: "Dining", count: "22 pieces", Art: Dining, bg: "#f1e7dc" },
-  { name: "Office", count: "30 pieces", Art: Desk, bg: "#e9e6df" },
+  { name: "Gaming Tables", count: "K-shaped & RGB", Art: KDesk, bg: "#ebebee" },
+  { name: "Ergonomic Chairs", count: "Black mesh & leather", Art: ErgoChair, bg: "#e7e8ec" },
+  { name: "Office Desks", count: "Executive & manager", Art: ExecDesk, bg: "#efebe6" },
+  { name: "Workstations", count: "2 to 12 seats", Art: Workstation, bg: "#e9ebe9" },
 ];
 
 const products = [
-  { name: "Margalla 3-Seater Sofa", price: "Rs. 145,000", tag: "Bestseller", Art: Sofa, color: "#c8a46e" },
-  { name: "Faisal Lounge Chair", price: "Rs. 48,500", tag: "New", Art: Armchair, color: "#7d8f7a" },
-  { name: "Shakarparian King Bed", price: "Rs. 189,000", Art: Bed, color: "#d9c3a5" },
-  { name: "Rawal 6-Seat Dining Set", price: "Rs. 132,000", Art: Dining, color: "#a87b51" },
-  { name: "Blue Area Work Desk", price: "Rs. 54,000", tag: "New", Art: Desk, color: "#b9925f" },
-  { name: "Daman Floor Lamp", price: "Rs. 14,900", Art: Lamp, color: "#e7b85a" },
+  { name: "K-Shape Pro Gaming Table 140cm", price: "Rs. 38,500", tag: "Bestseller", Art: KDesk, props: {} },
+  { name: "ErgoMax Black Mesh Chair", price: "Rs. 42,000", tag: "Bestseller", Art: ErgoChair, props: {} },
+  { name: "K-Shape Carbon Gaming Table 160cm", price: "Rs. 46,000", tag: "New", Art: KDesk, props: { accent: "#3b82f6" } },
+  { name: "ErgoMax Pro Chair with Headrest", price: "Rs. 55,000", Art: ErgoChair, props: { accent: "#3b82f6" } },
+  { name: "Executive Office Desk", price: "Rs. 72,000", Art: ExecDesk, props: {} },
+  { name: "4-Seat Office Workstation", price: "Rs. 118,000", tag: "Bulk deal", Art: Workstation, props: {} },
 ];
 
 const reasons = [
-  { title: "Solid sheesham & oak", text: "Kiln-dried hardwood frames built to last decades, not seasons." },
-  { title: "Made to order", text: "Pick your size, fabric and finish. Our workshop builds it for you." },
-  { title: "Free delivery & fitting", text: "Free delivery and assembly across Islamabad and Rawalpindi." },
-  { title: "5-year warranty", text: "Every frame is covered. If something fails, we fix it." },
+  { title: "Built for long hours", text: "Adjustable lumbar support, 4D armrests and recline lock to keep your back happy all day." },
+  { title: "Sturdy K-frame steel", text: "Our gaming tables use powder-coated steel K-legs that don't wobble, even with three monitors." },
+  { title: "Office & bulk orders", text: "Fitting out a whole office? Get special pricing on 5+ chairs or workstations." },
+  { title: "Free delivery & assembly", text: "Free delivery and setup across Islamabad and Rawalpindi, with a 1-year warranty." },
 ];
 
 const testimonials = [
-  { quote: "The sofa arrived on time, the team set it up in ten minutes, and the stitching is perfect.", name: "Ayesha K.", place: "F-7, Islamabad" },
-  { quote: "We furnished our whole office through ISB Suppliers. Great prices on bulk orders and very professional.", name: "Usman R.", place: "Blue Area" },
-  { quote: "They customised our dining table to fit a small space. Honestly better than the showroom ones.", name: "Sana M.", place: "Bahria Town" },
+  { quote: "The K-shaped table is rock solid. Two monitors, a PC and a mic arm on it and zero shake.", name: "Hamza A.", place: "Gamer, G-11" },
+  { quote: "We ordered 20 black ergonomic chairs for our software house. Delivered and assembled in a day.", name: "Usman R.", place: "Office manager, Blue Area" },
+  { quote: "My back pain at work is gone since switching to the ErgoMax chair. Worth every rupee.", name: "Sana M.", place: "Bahria Town" },
 ];
 
 function Logo() {
@@ -47,7 +48,7 @@ export default function Home() {
           <Logo />
           <nav className="nav-links" aria-label="Main">
             <a href="#categories">Shop</a>
-            <a href="#featured">Featured</a>
+            <a href="#featured">Products</a>
             <a href="#why">Why us</a>
             <a href="#contact">Contact</a>
           </nav>
@@ -59,30 +60,33 @@ export default function Home() {
         <section className="hero">
           <div className="container hero-inner">
             <div className="hero-copy">
-              <p className="eyebrow">Furniture suppliers · Islamabad</p>
-              <h1>Furniture that makes a house feel like home.</h1>
+              <p className="eyebrow">Office & gaming furniture · Islamabad</p>
+              <h1>Sit better. Play longer. Work smarter.</h1>
               <p className="lead">
-                Sofas, beds, dining sets and office furniture, built from solid wood in our own
-                workshop and delivered to your door.
+                K-shaped gaming tables, black ergonomic chairs and complete office setups, delivered
+                and assembled for free.
               </p>
               <div className="hero-actions">
-                <a href="#featured" className="btn btn-dark">Browse collection</a>
-                <a href="#contact" className="btn btn-ghost">Get a quote</a>
+                <a href="#featured" className="btn btn-dark">Browse products</a>
+                <a href="#contact" className="btn btn-ghost">Get a bulk quote</a>
               </div>
               <dl className="stats">
-                <div><dt>2,500+</dt><dd>Homes furnished</dd></div>
-                <div><dt>15 yrs</dt><dd>In business</dd></div>
+                <div><dt>5,000+</dt><dd>Chairs delivered</dd></div>
+                <div><dt>300+</dt><dd>Offices furnished</dd></div>
                 <div><dt>4.9★</dt><dd>Customer rating</dd></div>
               </dl>
             </div>
             <div className="hero-art">
-              <div className="hero-sun" />
+              <div className="hero-glow" />
               <div className="hero-card">
-                <Sofa color="#c8a46e" />
+                <div className="hero-scene">
+                  <div className="hero-desk"><KDesk /></div>
+                  <div className="hero-chair"><ErgoChair /></div>
+                </div>
               </div>
               <div className="hero-badge">
-                <strong>Up to 20% off</strong>
-                <span>Winter collection</span>
+                <strong>Combo deal</strong>
+                <span>Gaming table + chair from Rs. 76,000</span>
               </div>
             </div>
           </div>
@@ -91,8 +95,8 @@ export default function Home() {
         <section id="categories" className="section">
           <div className="container">
             <div className="section-head">
-              <p className="eyebrow">Shop by room</p>
-              <h2>Find the right piece for every space</h2>
+              <p className="eyebrow">Shop by category</p>
+              <h2>Everything for your desk setup</h2>
             </div>
             <div className="grid-4">
               {categories.map(({ name, count, Art, bg }) => (
@@ -109,15 +113,15 @@ export default function Home() {
         <section id="featured" className="section section-alt">
           <div className="container">
             <div className="section-head">
-              <p className="eyebrow">Featured</p>
-              <h2>Our most-loved pieces</h2>
+              <p className="eyebrow">Top sellers</p>
+              <h2>Gaming tables & ergonomic chairs</h2>
             </div>
             <div className="grid-3">
-              {products.map(({ name, price, tag, Art, color }) => (
+              {products.map(({ name, price, tag, Art, props }) => (
                 <article key={name} className="product">
                   <div className="product-art">
                     {tag && <span className="tag">{tag}</span>}
-                    <Art color={color} />
+                    <Art {...props} />
                   </div>
                   <div className="product-body">
                     <h3>{name}</h3>
@@ -136,10 +140,10 @@ export default function Home() {
           <div className="container why">
             <div className="section-head left">
               <p className="eyebrow">Why ISB Suppliers</p>
-              <h2>Built properly. Priced fairly.</h2>
+              <h2>Comfort you can feel on day one.</h2>
               <p className="muted">
-                We supply homes, offices and hotels with furniture made in our own workshop, so you
-                get showroom quality without the showroom markup.
+                From a single gaming setup to a full office floor, we supply furniture that is built
+                to handle 8+ hours of daily use, at prices that make sense.
               </p>
             </div>
             <div className="reasons">
@@ -157,7 +161,7 @@ export default function Home() {
         <section className="section section-dark">
           <div className="container">
             <div className="section-head">
-              <p className="eyebrow gold">Reviews</p>
+              <p className="eyebrow accent">Reviews</p>
               <h2>What our customers say</h2>
             </div>
             <div className="grid-3">
@@ -177,19 +181,19 @@ export default function Home() {
         <section id="contact" className="section">
           <div className="container cta">
             <div>
-              <h2>Planning a new space?</h2>
+              <h2>Setting up an office or a battle station?</h2>
               <p className="muted">
-                Call or WhatsApp us for a free quote, or subscribe for new arrivals and offers.
+                Call or WhatsApp us for prices, bulk quotes and custom sizes.
               </p>
               <ul className="contact-list">
-                <li><span>Phone / WhatsApp</span> +92 300 0000000</li>
+                <li><span>Phone / WhatsApp</span> <a className="link" href="https://wa.me/923028599511" target="_blank" rel="noopener noreferrer">+92 302 8599511</a></li>
                 <li><span>Showroom</span> Islamabad, Pakistan</li>
                 <li><span>Hours</span> Mon–Sat, 10am – 8pm</li>
               </ul>
             </div>
             <div className="cta-box">
-              <h3>Get new arrivals first</h3>
-              <p>One email a month. No spam.</p>
+              <h3>Get deals first</h3>
+              <p>New arrivals and combo offers, once a month.</p>
               <NewsletterForm />
             </div>
           </div>
@@ -202,6 +206,8 @@ export default function Home() {
           <p>© {new Date().getFullYear()} ISB Suppliers. All rights reserved.</p>
         </div>
       </footer>
+
+      <WhatsAppButton />
     </>
   );
 }
