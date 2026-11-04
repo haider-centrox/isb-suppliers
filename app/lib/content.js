@@ -62,14 +62,31 @@ function onNetlify() {
   return Boolean(process.env.NETLIFY_BLOBS_CONTEXT || globalThis.netlifyBlobsContext || process.env.NETLIFY);
 }
 
+// Any storage call that takes longer than this is abandoned, so a storage
+// problem can never take the website down (pages fall back to DEFAULTS).
+const TIMEOUT_MS = 9000;
+function withTimeout(promise, label) {
+  let timer;
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(`${label} timed out after ${TIMEOUT_MS}ms`)), TIMEOUT_MS); }),
+  ]).finally(() => clearTimeout(timer));
+}
+
+// Next.js replaces the global fetch inside the server; Netlify Blobs calls hang
+// through it on Netlify. Give Blobs a plain fetch (undici) instead.
 async function store() {
-  const { getStore } = await import("@netlify/blobs");
-  return getStore({ name: STORE, consistency: "strong" });
+  const [{ getStore }, { fetch }] = await Promise.all([import("@netlify/blobs"), import("undici")]);
+  // strong consistency: a save is visible on the very next page load.
+  return getStore({ name: STORE, fetch, consistency: "strong" });
 }
 
 async function readRaw() {
   if (onNetlify()) {
-    return (await store()).get(KEY, { type: "json" });
+    const t0 = Date.now();
+    const v = await withTimeout((await store()).get(KEY, { type: "json" }), "blobs get");
+    console.log(`[content] blobs get ok in ${Date.now() - t0}ms (${v ? "saved" : "empty"})`);
+    return v;
   }
   try {
     return JSON.parse(await fs.readFile(path.join(LOCAL_DIR, KEY), "utf8"));
@@ -80,7 +97,9 @@ async function readRaw() {
 
 async function writeRaw(obj) {
   if (onNetlify()) {
-    await (await store()).setJSON(KEY, obj);
+    const t0 = Date.now();
+    await withTimeout((await store()).setJSON(KEY, obj), "blobs set");
+    console.log(`[content] blobs set ok in ${Date.now() - t0}ms`);
     return;
   }
   await fs.mkdir(LOCAL_DIR, { recursive: true });
@@ -98,6 +117,7 @@ function merge(saved) {
   };
 }
 
+// Public pages: never fail. If storage is unavailable, show the built-in content.
 export async function getContent() {
   try {
     return merge(await readRaw());
@@ -107,13 +127,19 @@ export async function getContent() {
   }
 }
 
+// Admin: must load the real saved content or fail loudly. Falling back to the
+// defaults here could let a later Save overwrite the client's real edits.
+export async function getContentStrict() {
+  return merge(await readRaw());
+}
+
 export async function saveContent(content) {
   await writeRaw({ ...clean(content), version: 1, updatedAt: new Date().toISOString() });
 }
 
 export async function resetContent() {
   if (onNetlify()) {
-    await (await store()).delete(KEY);
+    await withTimeout((await store()).delete(KEY), "blobs delete");
     return;
   }
   await fs.rm(path.join(LOCAL_DIR, KEY), { force: true });
