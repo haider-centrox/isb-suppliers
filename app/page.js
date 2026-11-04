@@ -1,6 +1,7 @@
 import Icon from "./icons";
 import NewsletterForm from "./NewsletterForm";
 import WhatsAppButton from "./WhatsAppButton";
+import Motion from "./Motion";
 import { KDesk } from "./illustrations";
 import { CONTACT, categories, products, offers, features, reels } from "./data";
 
@@ -57,6 +58,7 @@ export default function Home() {
             <div className="hero-art">
               <div className="hero-photo hero-photo-a"><img src="/images/chair-gaming-red-relax.jpg" alt="Red and black gaming chair" /></div>
               <div className="hero-photo hero-photo-b"><img src="/images/chair-black-mesh-executive.jpg" alt="Black mesh executive chair" /></div>
+              <div className="hero-ring" />
               <div className="hero-badge">
                 <strong>Gaming chairs</strong>
                 <span>from Rs. 10,000</span>
@@ -132,6 +134,18 @@ export default function Home() {
                 </div>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section className="marquee" aria-hidden="true">
+          <div className="marquee-track">
+            {[0, 1].map((k) => (
+              <div key={k} className="marquee-group">
+                {["Executive Chairs", "Gaming Chairs", "Conference Tables", "Executive Tables", "K-Shaped Gaming Tables", "Office Workstations", "IT Equipment", "Electronics", "Appliances", "Complete Office Setups"].map((t) => (
+                  <span key={t}>{t}<i>✦</i></span>
+                ))}
+              </div>
+            ))}
           </div>
         </section>
 
@@ -220,6 +234,7 @@ export default function Home() {
       </footer>
 
       <WhatsAppButton />
+      <Motion />
     </>
   );
 }
