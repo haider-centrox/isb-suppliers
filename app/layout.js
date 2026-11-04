@@ -7,7 +7,7 @@ const DESC =
 
 export const metadata = {
   metadataBase: new URL(SITE),
-  alternates: { canonical: SITE, languages: { en: SITE, ur: `${SITE}/ur/` } },
+  alternates: { canonical: SITE },
   openGraph: {
     type: "website",
     url: SITE,

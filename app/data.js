@@ -10,6 +10,9 @@ export const CONTACT = {
   instagram: "https://www.instagram.com/islamabadsuppliers/",
 };
 
+// Set to true to show the English/Urdu switch (header, mobile menu, footer).
+export const SHOW_LANG_SWITCH = false;
+
 export const categoryIcons = ["chair", "it", "tv", "appliance", "office"];
 export const featureIcons = ["ship", "truck", "tag", "globe"];
 

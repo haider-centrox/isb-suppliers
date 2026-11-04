@@ -8,7 +8,7 @@ import ProductGrid from "./ProductGrid";
 import QuoteForm from "./QuoteForm";
 import LangSync from "./LangSync";
 import { dict } from "./i18n";
-import { CONTACT, categoryIcons, featureIcons, productMeta, reels, registrations } from "./data";
+import { CONTACT, SHOW_LANG_SWITCH, categoryIcons, featureIcons, productMeta, reels, registrations } from "./data";
 
 function Logo({ home, brand }) {
   return (
@@ -47,7 +47,7 @@ export default function Site({ lang = "en" }) {
             {navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}
           </nav>
           <div className="nav-actions">
-            <LangSwitch t={t} />
+            {SHOW_LANG_SWITCH && <LangSwitch t={t} />}
             <a href={CONTACT.phoneHref} className="btn btn-dark btn-sm nav-call" aria-label={`${t.call} ${CONTACT.phone}`}>
               <Icon name="phone" size={17} />
               <span className="nav-call-label">{t.callNow}</span>
@@ -61,7 +61,7 @@ export default function Site({ lang = "en" }) {
               brand={t.brand}
               phoneHref={CONTACT.phoneHref}
               callText={`${t.call} ${CONTACT.phone}`}
-              switchTo={t.switchTo}
+              switchTo={SHOW_LANG_SWITCH ? t.switchTo : null}
             />
           </div>
         </div>
@@ -344,7 +344,7 @@ export default function Site({ lang = "en" }) {
           <div className="socials">
             <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="link">Facebook</a>
             <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="link">Instagram</a>
-            <LangSwitch t={t} className="lang-switch-footer" />
+            {SHOW_LANG_SWITCH && <LangSwitch t={t} className="lang-switch-footer" />}
           </div>
           <p>© {new Date().getFullYear()} {t.brand}. {t.footer}</p>
         </div>
