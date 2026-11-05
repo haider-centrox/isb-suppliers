@@ -52,6 +52,15 @@ export const heroSlides = [
       ur: ["گیمنگ چیئرز", "ریسنگ اسٹائل · آج کی قیمت معلوم کریں"],
     },
   },
+  {
+    // Full-scene photo (not a cut-out): shown as a framed card.
+    img: "/images/hero-k-table-photo.webp", w: 900, h: 900, accent: "red", photo: true,
+    alt: { en: "K-shaped gaming table", ur: "K شیپ گیمنگ ٹیبل" },
+    badge: {
+      en: ["K-shaped gaming tables", "Steel K-frame · ask for today's price"],
+      ur: ["K شیپ گیمنگ ٹیبلز", "اسٹیل K فریم · آج کی قیمت معلوم کریں"],
+    },
+  },
 ];
 
 export const SITE_URL = "https://isb-suppliers.netlify.app";

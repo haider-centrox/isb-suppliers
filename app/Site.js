@@ -77,7 +77,7 @@ export default async function Site({ lang = "en" }) {
       <main>
         <section className="hero hero-bg" data-slide="0">
           <HeroSlider
-            slides={heroSlides.map((s) => ({ img: s.img, w: s.w, h: s.h, accent: s.accent, alt: s.alt[lang] }))}
+            slides={heroSlides.map((s) => ({ img: s.img, w: s.w, h: s.h, accent: s.accent, wide: !!s.wide, photo: !!s.photo, alt: s.alt[lang] }))}
             labels={lang === "ur"
               ? { group: "پروڈکٹ سلائیڈز", slide: "سلائیڈ", pause: "سلائیڈ شو روکیں", play: "سلائیڈ شو چلائیں" }
               : { group: "Featured products", slide: "Slide", pause: "Pause slideshow", play: "Play slideshow" }}

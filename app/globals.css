@@ -910,3 +910,26 @@ main section[id] { scroll-margin-top: 72px; }
 @media (prefers-reduced-motion: reduce) {
   .hero-dot i.run { transform: none; }
 }
+
+/* Wide (table) slides: larger than the stage, sitting above the price tag */
+.hero-slide.wide { left: -12%; right: -12%; }
+.hero-slide.wide .hero-chair { object-position: 50% 58%; }
+.hero-floor { transition: bottom .9s cubic-bezier(.2,.7,.2,1), left .9s, right .9s; }
+.hero-stage[data-wide] .hero-floor { bottom: 24%; left: 2%; right: 2%; }
+@media (min-width: 901px) {
+  .hero-slide.wide .hero-chair { object-position: 50% 36%; }
+  .hero-stage[data-wide] .hero-floor { bottom: 36%; }
+}
+
+/* Photo slides (full scene, not cut out): framed card on the stage */
+.hero-slide.photo { display: grid; place-items: center; }
+.hero-slide.photo .hero-chair {
+  position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+  border-radius: 26px; filter: none;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 40px 80px -30px rgba(0,0,0,.85), 0 0 60px -10px rgba(230,80,160,.45);
+}
+.hero-stage[data-photo] .hero-floor { opacity: 0; }
+.hero-floor { transition: bottom .9s cubic-bezier(.2,.7,.2,1), opacity .6s; }
+@media (min-width: 901px) {
+  .hero-slide.photo { place-items: start center; padding-top: 6%; }
+}

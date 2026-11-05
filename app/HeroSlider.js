@@ -63,12 +63,12 @@ export default function HeroSlider({ slides, labels }) {
   return (
     <>
       <div className="hero-media" aria-hidden="true" ref={mediaRef}>
-        <div className="hero-stage" data-accent={slides[i].accent}>
+        <div className="hero-stage" data-accent={slides[i].accent} data-wide={slides[i].wide ? "1" : undefined} data-photo={slides[i].photo ? "1" : undefined}>
           <div className="hero-spot" />
           <div className="hero-spot spot-red" />
           <div className="hero-floor" />
           {slides.map((s, k) => (
-            <div key={s.img} className={`hero-slide${k === i ? " on" : ""}`} data-accent={s.accent}>
+            <div key={s.img} className={`hero-slide${k === i ? " on" : ""}${s.wide ? " wide" : ""}${s.photo ? " photo" : ""}`} data-accent={s.accent}>
               <img
                 className="hero-chair"
                 src={s.img}
